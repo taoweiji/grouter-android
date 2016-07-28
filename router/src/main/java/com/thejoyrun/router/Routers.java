@@ -7,5 +7,8 @@ import android.app.Activity;
  */
 public class Routers {
     public static void inject(Activity activity){}
+    public static void open(String url){
+        
+    }
 
 }
