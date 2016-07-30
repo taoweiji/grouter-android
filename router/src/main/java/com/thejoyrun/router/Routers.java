@@ -81,6 +81,19 @@ public class Routers {
                 e.printStackTrace();
             }
         }
+        if (activity.getIntent().getData() != null) {
+            String url = activity.getIntent().getDataString();
+            RouterActivity routerActivity = (RouterActivity) clazz.getAnnotation(RouterActivity.class);
+            if (routerActivity != null && url.contains(routerActivity.value() + "/")) {
+                url = url.replace(routerActivity.value() + "/", "");
+                Routers.startActivity(activity, url);
+            }
+            //joyrun://second/second2?
+            //joyrun://second2?
+            //joyrun://second2?
+        }
+
+        // TODO 实现二级跳转
     }
 
 

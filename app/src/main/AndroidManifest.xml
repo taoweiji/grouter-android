@@ -16,14 +16,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SecondActivity"></activity>
+        <activity android:label="SecondActivity" android:name=".SecondActivity" />
         <activity android:name="com.thejoyrun.router.RouterCenterActivity">
             <intent-filter>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="android.intent.action.VIEW" />
+
                 <data android:scheme="joyrun" />
             </intent-filter>
         </activity>
+        <activity android:label="ThirdActivity" android:name=".ThirdActivity"></activity>
     </application>
 
 </manifest>

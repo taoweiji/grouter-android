@@ -49,7 +49,7 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Routers.startActivity(MainActivity.this, "joyrun://second?uid=233&age=24");
+                Routers.startActivity(MainActivity.this, "joyrun://second/third?uid=233&age=24");
             }
         });
         findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
