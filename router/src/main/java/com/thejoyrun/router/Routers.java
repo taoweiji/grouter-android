@@ -101,10 +101,10 @@ public class Routers {
         activityRouteTableInitializer.initRouterTable(sRouter);
     }
 
-    public static void startActivity(Context context, String url) {
+    public static boolean startActivity(Context context, String url) {
         Uri uri = Uri.parse(url);
         if (!sScheme.equals(uri.getScheme())) {
-            return;
+            return false;
         }
         Class clazz = sRouter.get(uri.getHost());
         if (clazz != null) {
@@ -114,24 +114,28 @@ public class Routers {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             }
             context.startActivity(intent);
+            return true;
         } else {
             new Throwable(url + "can not startActivity").printStackTrace();
         }
+        return false;
     }
 
-    public static void startActivityForResult(Activity context, String url, int requestCode) {
+    public static boolean startActivityForResult(Activity context, String url, int requestCode) {
         Uri uri = Uri.parse(url);
         if (!sScheme.equals(uri.getScheme())) {
-            return;
+            return false;
         }
         Class clazz = sRouter.get(uri.getHost());
         if (clazz != null) {
             Intent intent = new Intent(context, clazz);
             intent.setData(uri);
             context.startActivityForResult(intent, requestCode);
+            return true;
         } else {
             new Throwable(url + "can not startActivity").printStackTrace();
         }
+        return false;
     }
 
     public static String getScheme() {
