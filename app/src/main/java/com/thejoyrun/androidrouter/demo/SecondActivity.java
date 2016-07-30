@@ -1,13 +1,13 @@
 package com.thejoyrun.androidrouter.demo;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.thejoyrun.router.RouterActivity;
 import com.thejoyrun.router.RouterField;
 import com.thejoyrun.router.Routers;
-
-public class SecondActivity extends AppCompatActivity {
+@RouterActivity("second")
+public class SecondActivity extends BaseActivity {
 
     @RouterField("uid")
     private int uid;
@@ -43,6 +43,7 @@ public class SecondActivity extends AppCompatActivity {
         Log.e("name", String.valueOf(name));
         Log.e("man", String.valueOf(man));
         Log.e("manger", String.valueOf(manger));
+        Log.e("formActivity", String.valueOf(formActivity));
 //        Log.e("user", user.toString());
     }
 }

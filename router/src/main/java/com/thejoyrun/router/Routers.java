@@ -1,24 +1,45 @@
 package com.thejoyrun.router;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Wiki on 16/7/28.
  */
 public class Routers {
     private static final String TAG = "Routers";
+    private static Map<String, Class<? extends Activity>> sRouter = new HashMap<>();
+    private static String sScheme = "routers";
 
     private Routers(Activity activity) {
         activity.getIntent().getExtras();
     }
 
+
+    private static List<Field> getDeclaredFields(Class clazz) {
+        List<Field> fieldList = new ArrayList<>();
+        for (; clazz != Object.class; clazz = clazz.getSuperclass()) {
+            Field[] fields = clazz.getDeclaredFields();
+            for (Field field : fields) {
+                fieldList.add(field);
+            }
+        }
+        return fieldList;
+    }
+
     public static void inject(Activity activity) {
-        SafeBundle bundle = new SafeBundle(activity.getIntent().getExtras(),activity.getIntent().getData());
+        SafeBundle bundle = new SafeBundle(activity.getIntent().getExtras(), activity.getIntent().getData());
         Class clazz = activity.getClass();
-        Field[] fields = clazz.getDeclaredFields();
-        System.out.println(fields.length);
+        List<Field> fields = getDeclaredFields(clazz);
+        System.out.println(fields.size());
         for (Field field : fields) {
             RouterField annotation = field.getAnnotation(RouterField.class);
             if (annotation == null) {
@@ -56,25 +77,60 @@ public class Routers {
                 } else if (field.getGenericType() == Boolean.class) {
                     field.set(activity, bundle.getBoolean(name, defaultValue != null ? (Boolean) defaultValue : false));
                 }
-//                else if (  Parcelable.class.isAssignableFrom(field.getGenericType())) {
-//                    Object result = bundle.getParcelable(name);
-//                    if (result != null) {
-//                        field.set(activity, result);
-//                    }
-//                } else if (defaultValue instanceof Serializable) {
-//                    Object result = bundle.getSerializable(name);
-//                    if (result != null) {
-//                        field.set(activity, result);
-//                    }
-//                }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public static void open(String url) {
 
+    public static void register(ActivityRouteTableInitializer activityRouteTableInitializer) {
+        activityRouteTableInitializer.initRouterTable(sRouter);
     }
 
+    public static void startActivity(Context context, String url) {
+        Uri uri = Uri.parse(url);
+        if (!sScheme.equals(uri.getScheme())) {
+            return;
+        }
+        Class clazz = sRouter.get(uri.getHost());
+        if (clazz != null) {
+            Intent intent = new Intent(context, clazz);
+            intent.setData(uri);
+            if (!(context instanceof Activity)) {
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            }
+            context.startActivity(intent);
+        } else {
+            new Throwable(url + "can not startActivity").printStackTrace();
+        }
+    }
+
+    public static void startActivityForResult(Activity context, String url, int requestCode) {
+        Uri uri = Uri.parse(url);
+        if (!sScheme.equals(uri.getScheme())) {
+            return;
+        }
+        Class clazz = sRouter.get(uri.getHost());
+        if (clazz != null) {
+            Intent intent = new Intent(context, clazz);
+            intent.setData(uri);
+            context.startActivityForResult(intent, requestCode);
+        } else {
+            new Throwable(url + "can not startActivity").printStackTrace();
+        }
+    }
+
+    public static String getScheme() {
+        return sScheme;
+    }
+
+    public static void init(String scheme) {
+        Routers.sScheme = scheme;
+        try {
+            Class.forName("com.thejoyrun.router.AptActivityRouteTableInitializer");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

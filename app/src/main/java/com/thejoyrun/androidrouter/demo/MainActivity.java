@@ -3,48 +3,61 @@ package com.thejoyrun.androidrouter.demo;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.thejoyrun.router.Router;
-import com.thejoyrun.router.RouterField;
+import com.thejoyrun.router.Routers;
 
-@Router(intExtra = {"uid", "age=>ago"}, longExtra = "time")
-public class MainActivity extends AppCompatActivity {
-
-    @RouterField("uid")
-    private int uid;
-
-    @RouterField("uid")
-    private int age;
-
-    @RouterField("uid")
-    private long time;
-
-    @RouterField("name")
-    private String name;
-
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findViewById(R.id.go).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                intent.putExtra("uid", "233");
+                intent.putExtra("age", "24");
+                intent.putExtra("time", System.currentTimeMillis());
+                intent.putExtra("name", "Wiki");
+                intent.putExtra("man", "true");
+                intent.putExtra("manger", "true");
+                startActivity(intent);
+            }
+        });
+        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 intent.setData(Uri.parse("joyrun://second?uid=233&age=24"));
-//                intent.putExtra("uid", "233");
-//                intent.putExtra("age", "24");
-//                intent.putExtra("time", System.currentTimeMillis());
-//                intent.putExtra("name", "Wiki");
-//                intent.putExtra("man", "true");
-//                intent.putExtra("manger", "true");
-//                intent.putExtra("user", new User("Wiki2"));
                 startActivity(intent);
             }
         });
-//        Routers.inject(this);
+        findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                intent.setData(Uri.parse("joyrun://second?uid=233&age=24"));
+                intent.putExtra("time", System.currentTimeMillis());
+                intent.putExtra("name", "Wiki");
+                intent.putExtra("man", "true");
+                intent.putExtra("manger", "true");
+                startActivity(intent);
+            }
+        });
+        findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Routers.startActivity(MainActivity.this, "joyrun://second?uid=233&age=24");
+            }
+        });
+        findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("joyrun://second?uid=233&age=24")));
+            }
+        });
 
     }
 }
