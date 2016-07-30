@@ -1,5 +1,6 @@
 package com.thejoyrun.router;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
@@ -12,9 +13,30 @@ import java.io.Serializable;
 public class SafeBundle {
     private static final String TAG = "SafeBundle";
     private Bundle bundle;
+    private Uri uri;
 
-    public SafeBundle(Bundle bundle) {
+    public SafeBundle(Bundle bundle, Uri uri) {
         this.bundle = bundle;
+        this.uri = uri;
+        if (this.bundle == null) {
+            this.bundle = new Bundle();
+        }
+    }
+
+    public Bundle getBundle() {
+        return bundle;
+    }
+
+    public void setBundle(Bundle bundle) {
+        this.bundle = bundle;
+    }
+
+    public Uri getUri() {
+        return uri;
+    }
+
+    public void setUri(Uri uri) {
+        this.uri = uri;
     }
 
     public int getInt(String key) {
@@ -47,6 +69,9 @@ public class SafeBundle {
 
     public double getDouble(String key, double defaultValue) {
         Object o = bundle.get(key);
+        if (o == null && uri != null) {
+            o = uri.getQueryParameter(key);
+        }
         if (o == null) {
             return defaultValue;
         }
@@ -64,6 +89,9 @@ public class SafeBundle {
 
     public long getLong(String key, long defaultValue) {
         Object o = bundle.get(key);
+        if (o == null && uri != null) {
+            o = uri.getQueryParameter(key);
+        }
         if (o == null) {
             return defaultValue;
         }
@@ -81,6 +109,9 @@ public class SafeBundle {
 
     public int getInt(String key, int defaultValue) {
         Object o = bundle.get(key);
+        if (o == null && uri != null) {
+            o = uri.getQueryParameter(key);
+        }
         if (o == null) {
             return defaultValue;
         }
@@ -98,6 +129,9 @@ public class SafeBundle {
 
     public boolean getBoolean(String key, boolean defaultValue) {
         Object o = bundle.get(key);
+        if (o == null && uri != null) {
+            o = uri.getQueryParameter(key);
+        }
         if (o == null) {
             return defaultValue;
         }
@@ -115,6 +149,9 @@ public class SafeBundle {
 
     public float getFloat(String key, float defaultValue) {
         Object o = bundle.get(key);
+        if (o == null && uri != null) {
+            o = uri.getQueryParameter(key);
+        }
         if (o == null) {
             return defaultValue;
         }
@@ -150,7 +187,7 @@ public class SafeBundle {
     }
 
     public boolean containsKey(String key) {
-        return bundle.containsKey(key);
+        return bundle.containsKey(key) || (uri != null && uri.getQueryParameter(key) != null);
     }
 
     public <T extends Parcelable> T getParcelable(String key) {

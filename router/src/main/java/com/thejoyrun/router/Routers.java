@@ -15,7 +15,7 @@ public class Routers {
     }
 
     public static void inject(Activity activity) {
-        SafeBundle bundle = new SafeBundle(activity.getIntent().getExtras());
+        SafeBundle bundle = new SafeBundle(activity.getIntent().getExtras(),activity.getIntent().getData());
         Class clazz = activity.getClass();
         Field[] fields = clazz.getDeclaredFields();
         System.out.println(fields.length);

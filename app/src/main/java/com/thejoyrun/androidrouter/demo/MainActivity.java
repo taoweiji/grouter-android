@@ -1,6 +1,7 @@
 package com.thejoyrun.androidrouter.demo;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -32,13 +33,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                intent.putExtra("uid", "233");
-                intent.putExtra("age", "24");
-                intent.putExtra("time", System.currentTimeMillis());
-                intent.putExtra("name", "Wiki");
-                intent.putExtra("man", "true");
-                intent.putExtra("manger", "true");
-                intent.putExtra("user", new User("Wiki2"));
+                intent.setData(Uri.parse("joyrun://second?uid=233&age=24"));
+//                intent.putExtra("uid", "233");
+//                intent.putExtra("age", "24");
+//                intent.putExtra("time", System.currentTimeMillis());
+//                intent.putExtra("name", "Wiki");
+//                intent.putExtra("man", "true");
+//                intent.putExtra("manger", "true");
+//                intent.putExtra("user", new User("Wiki2"));
                 startActivity(intent);
             }
         });

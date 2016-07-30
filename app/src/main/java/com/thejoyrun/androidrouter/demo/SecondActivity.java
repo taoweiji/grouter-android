@@ -34,7 +34,9 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+        long time = System.currentTimeMillis();
         Routers.inject(this);
+        Log.e("解析耗时",String.valueOf(System.currentTimeMillis() - time));
         Log.e("uid", String.valueOf(uid));
         Log.e("age", String.valueOf(age));
         Log.e("time", String.valueOf(time));
