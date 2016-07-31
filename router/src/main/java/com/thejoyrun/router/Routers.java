@@ -129,17 +129,21 @@ public class Routers {
 
     private static Class<? extends Activity> getActivityClass(String url, Uri uri) {
         String key;
-        if (!sScheme.equals(uri.getScheme())) {
-            int tmp = url.indexOf('?');
-            if (tmp > 0) {
-                key = url.substring(0, tmp);
-            } else {
-                key = url;
-            }
+        int tmp = url.indexOf('?');
+        if (tmp > 0) {
+            key = url.substring(0, tmp);
         } else {
-            key = uri.getHost();
+            key = url;
         }
-        return sRouter.get(key);
+        Class<? extends Activity> clazz = sRouter.get(key);
+        if (clazz != null){
+            return clazz;
+        }
+        if (sScheme.equals(uri.getScheme())) {
+            key = uri.getHost();
+            return sRouter.get(key);
+        }
+        return null;
     }
 
     public static boolean startActivityForResult(Activity context, String url, int requestCode) {

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Application;
 
 import com.thejoyrun.router.ActivityRouteTableInitializer;
-import com.thejoyrun.router.Filter;
 import com.thejoyrun.router.Routers;
 
 import java.util.Map;
@@ -25,11 +24,11 @@ public class MyApplication extends Application {
                 router.put("other://www.thejoyrun.com/second", SecondActivity.class);
             }
         });
-        Routers.setFilter(new Filter() {
-            @Override
-            public String doFilter(String url) {
-                return url.replace("joyrun://www.thejoyrun.com/","joyrun://");
-            }
-        });
+//        Routers.setFilter(new Filter() {
+//            @Override
+//            public String doFilter(String url) {
+//                return url.replace("joyrun://www.thejoyrun.com/","joyrun://");
+//            }
+//        });
     }
 }

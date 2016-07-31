@@ -7,7 +7,7 @@ import com.thejoyrun.router.RouterActivity;
 import com.thejoyrun.router.RouterField;
 import com.thejoyrun.router.Routers;
 
-@RouterActivity({"second", "other2://www.thejoyrun.com/second"})
+@RouterActivity({"second", "other2://www.thejoyrun.com/second", "joyrun://www.thejoyrun.com/second"})
 public class SecondActivity extends BaseActivity {
     @RouterField("uid")
     private int uid;
