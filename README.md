@@ -48,7 +48,7 @@ public class ThirdActivity extends BaseActivity {
 Routers.startActivity(context, "joyrun://second/third?uid=233");
 ```
 ### Bundle、Uri参数注入
-Routers.inject(this)方法可以单独使用，可以实现注入Bundle、Uri的参数，由于Uri的参数是String类型，所以该框架还支持把String格式的类型转换为目标类型。目前该方法支持double、float、int、boolean、String数据类型。
+Routers.inject(this)方法可以`单独使用`，可以实现注入Bundle、Uri的参数，由于Uri的参数是String类型，所以该框架还支持把String格式的类型转换为目标类型。目前该方法支持double、float、int、boolean、String数据类型。
 ```
 // Bundle
 Intent intent = new Intent(this, SecondActivity.class);
