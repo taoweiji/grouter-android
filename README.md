@@ -27,6 +27,8 @@ public class SecondActivity extends Activity {
 ```java
 Routers.init("joyrun");//设置Scheme
 Routers.startActivity(context, "joyrun://second?uid=233");
+// 如果AndroidManifest.xml注册了RouterCenterActivity，也可以通过下面的方式打开，如果是APP内部使用，不建议使用。
+// startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("joyrun://second?uid=233")));
 ```
 
 ### 多级跳转
