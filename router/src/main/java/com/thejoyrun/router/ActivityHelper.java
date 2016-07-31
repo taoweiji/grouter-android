@@ -1,5 +1,6 @@
 package com.thejoyrun.router;
 
+import android.app.Activity;
 import android.content.Context;
 
 import java.util.HashMap;
@@ -34,8 +35,11 @@ public class ActivityHelper {
     }
 
     public void start(Context context) {
-
         Routers.startActivity(context, getUrl());
+    }
+
+    public void startForResult(Activity activity, int requestCode) {
+        Routers.startActivityForResult(activity, getUrl(), requestCode);
     }
 
     public String put(String key, String value) {
