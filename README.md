@@ -150,5 +150,26 @@ dependencies {
     apt 'com.github.joyrun.AndroidRouter:router-compiler:0.2.0'
 }
 ```
-
+### 初始化
+```java
+// 必填，填写独特的scheme，避免和其它APP重复
+Routers.init("joyrun");
+// 可选，如果需要支持HTTP协议就需要填写
+Routers.setHttpHost("www.thejoyrun.com");
+// 可选，手工注册Activity
+Routers.register(new ActivityRouteTableInitializer() {
+    @Override
+    public void initRouterTable(Map<String, Class<? extends Activity>> router) {
+        router.put("second2", SecondActivity.class);
+        router.put("other://www.thejoyrun.com/second", SecondActivity.class);
+    }
+});
+// 可选，针对自己的业务做调整
+Routers.setFilter(new Filter() {
+    public String doFilter(String url) {
+    	//return url.replace("joyrun://www.thejoyrun.com/","joyrun://");
+        return url;
+    }
+});
+```
 
