@@ -4,7 +4,7 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 android {
     compileSdkVersion 23
-    buildToolsVersion "24.0.0 rc2"
+    buildToolsVersion '23.0.2'
 
     defaultConfig {
         minSdkVersion 14
