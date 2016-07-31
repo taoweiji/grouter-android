@@ -125,3 +125,30 @@ startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("joyrun://second?uid=233&
 // =>
 http://www.thejoyrun.com/second?uid=233
 ```
+
+## 使用方式
+### 配置根目录的build.gradle 
+```
+allprojects {
+	repositories {
+		...
+		maven { url "https://jitpack.io" }
+	}
+	dependencies {
+        classpath 'com.android.tools.build:gradle:1.5.0'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+    }
+}
+```
+### 配置app module的build.gradle 
+```
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+dependencies {
+    compile 'com.github.joyrun.AndroidRouter:router:0.2.0'
+    apt 'com.github.joyrun.AndroidRouter:router-compiler:0.2.0'
+}
+```
+
+
