@@ -35,7 +35,7 @@ Routers.startActivity(context, "joyrun://second?uid=233");
 // 如果AndroidManifest.xml注册了RouterCenterActivity，也可以通过下面的方式打开，如果是APP内部使用，不建议使用。
 // startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("joyrun://second?uid=233")));
 ```
-### 目标Activity的URL构造器访问（好用）
+### 目标Activity的URL构造器访问
 使用URL访问有一个缺点就是难以得以目标Activity所需要的参数，同时也需要手工生成URL，使用并不友好，填写的参数名称也容易出错。所以我们就做了一个用于生成目标Activity的URL构造器，减少我们写参数名的代码。会根据注解了RouterField的成员变量生成构造器。
 ```java
 // Routers.startActivity(context, "joyrun://second?uid=233&name=Wiki");
