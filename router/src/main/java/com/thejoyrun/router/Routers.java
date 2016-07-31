@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.text.TextUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class Routers {
     private static Map<String, Class<? extends Activity>> sRouter = new HashMap<>();
     private static String sScheme = "routers";
     private static String sHttpHost = "";
+    private static Filter sFilter;
 
     private Routers(Activity activity) {
         activity.getIntent().getExtras();
@@ -82,6 +84,8 @@ public class Routers {
                 e.printStackTrace();
             }
         }
+
+        // 二级跳转
         if (activity.getIntent().getData() != null) {
             String url = activity.getIntent().getDataString();
             RouterActivity routerActivity = (RouterActivity) clazz.getAnnotation(RouterActivity.class);
@@ -93,8 +97,6 @@ public class Routers {
             //joyrun://second2?
             //joyrun://second2?
         }
-
-        // TODO 实现二级跳转
     }
 
 
@@ -103,6 +105,12 @@ public class Routers {
     }
 
     public static boolean startActivity(Context context, String url) {
+        if (sFilter != null) {
+            url = sFilter.doFilter(url);
+        }
+        if (TextUtils.isEmpty(url)) {
+            return false;
+        }
         Uri uri = Uri.parse(url);
         Class clazz = getActivityClass(url, uri);
         if (clazz != null) {
@@ -135,6 +143,12 @@ public class Routers {
     }
 
     public static boolean startActivityForResult(Activity context, String url, int requestCode) {
+        if (sFilter != null) {
+            url = sFilter.doFilter(url);
+        }
+        if (TextUtils.isEmpty(url)) {
+            return false;
+        }
         Uri uri = Uri.parse(url);
         Class clazz = getActivityClass(url, uri);
         if (clazz != null) {
@@ -167,5 +181,9 @@ public class Routers {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void setFilter(Filter filter) {
+        Routers.sFilter = filter;
     }
 }

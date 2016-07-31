@@ -41,8 +41,7 @@ public class RouterProcessor extends AbstractProcessor {
         TypeSpec.Builder typeSpec = TypeSpec.classBuilder("AptActivityRouteTableInitializer")
                 .addSuperinterface(activityRouteTableInitializer)
                 .addModifiers(Modifier.PUBLIC)
-                .addStaticBlock(CodeBlock.of("Routers.register(new AptActivityRouteTableInitializer());"))
-                ;
+                .addStaticBlock(CodeBlock.of("Routers.register(new AptActivityRouteTableInitializer());"));
 
         TypeElement activityRouteTableInitializertypeElement = elementUtils.getTypeElement(activityRouteTableInitializer.toString());
         List<? extends Element> members = elementUtils.getAllMembers(activityRouteTableInitializertypeElement);
@@ -62,7 +61,9 @@ public class RouterProcessor extends AbstractProcessor {
         for (Element element : elements) {
             RouterActivity routerActivity = element.getAnnotation(RouterActivity.class);
             TypeElement typeElement = (TypeElement) element;
-            bindViewMethodSpecBuilder.addStatement("arg0.put($S, $T.class)", routerActivity.value(), typeElement.asType());
+            for (String key : routerActivity.value()) {
+                bindViewMethodSpecBuilder.addStatement("arg0.put($S, $T.class)", key, typeElement.asType());
+            }
         }
         JavaFile javaFile = JavaFile.builder("com.thejoyrun.router", typeSpec.addMethod(bindViewMethodSpecBuilder.build()).build()).build();
         try {
