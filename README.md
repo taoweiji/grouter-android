@@ -10,7 +10,7 @@
 5. 支持HTTP协议。
 
 ### 简单例子
-```
+```java
 @RouterActivity("second")
 public class SecondActivity extends Activity {
     @RouterField("uid")
@@ -24,14 +24,14 @@ public class SecondActivity extends Activity {
     }
 }
 ```
-```
+```java
 Routers.init("joyrun");//设置Scheme
 Routers.startActivity(context, "joyrun://second?uid=233");
 ```
 
 ### 多级跳转
 
-```
+```java
 @RouterActivity("third")
 public class ThirdActivity extends BaseActivity {
     @RouterField("uid")
@@ -45,13 +45,13 @@ public class ThirdActivity extends BaseActivity {
     }
 }
 ```
-```
+```java
 // 先打开SecondActivity，再打开ThirdActivity
 Routers.startActivity(context, "joyrun://second/third?uid=233");
 ```
 ### Bundle、Uri参数注入（支持单独使用）
 Routers.inject(this)方法可以`单独使用`，可以实现注入Bundle、Uri的参数，由于Uri的参数是String类型，所以该框架还支持把String格式的类型转换为目标类型。目前该方法支持double、float、int、boolean、String数据类型。
-```
+```java
 // Bundle
 Intent intent = new Intent(this, SecondActivity.class);
 intent.putExtra("uid", "233");
@@ -66,7 +66,7 @@ intent.setData(Uri.parse("joyrun://second?uid=233"));
 intent.putExtra("name", "Wiki");
 startActivity(intent);
 ```
-```
+```java
 @RouterActivity("second")
 public class SecondActivity extends Activity {
     @RouterField("uid")
@@ -86,7 +86,7 @@ public class SecondActivity extends Activity {
 ```
 ### 从外部浏览器、其它APP打开
 只要在AndroidManifest.xml注册了RouterCenterActivity，即可变成经典的Uri打开，可以支持外部浏览器、其它APP打开内部的Activity。
-```
+```xml
 <activity android:name="com.thejoyrun.router.RouterCenterActivity">
     <intent-filter>
         <category android:name="android.intent.category.DEFAULT" />
@@ -95,17 +95,17 @@ public class SecondActivity extends Activity {
     </intent-filter>
 </activity>
 ```
-```
+```java
 // Java代码调用
 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("joyrun://second?uid=233&name=Wiki")));
 ```
-```
+```html
 // HTML方式，系统浏览器（不支持微信）
 <a href="joyrun://second?uid=233&name=Wiki">打开JoyrunApp的SecondActivity</a>
 ```
 
 ### 支持HTTP协议
-```
+```xml
 <activity android:name="com.thejoyrun.router.RouterCenterActivity">
     <intent-filter>
         <category android:name="android.intent.category.DEFAULT" />
