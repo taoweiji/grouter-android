@@ -1,4 +1,6 @@
 # AndroidRouter
+[![](https://jitpack.io/v/joyrun/AndroidRouter.svg)](https://jitpack.io/#joyrun/AndroidRouter)
+
 通过注解方式来实现URL打开Activity功能，并支持在WebView和外部浏览器使用，支持多级Activity跳转，支持Bundle、Uri参数注入并转换参数类型。
 ### 特点
 1. 支持注解方式、手动方式注册Activity。
@@ -63,6 +65,24 @@ Intent intent = new Intent(this, SecondActivity.class);
 intent.setData(Uri.parse("joyrun://second?uid=233"));
 intent.putExtra("name", "Wiki");
 startActivity(intent);
+```
+```
+@RouterActivity("second")
+public class SecondActivity extends Activity {
+    @RouterField("uid")
+    private int uid;
+    @RouterField("name")
+    private String name;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second);
+        Routers.inject(this);
+        Log.e("uid", String.valueOf(uid));
+        Log.e("name", String.valueOf(name));
+    }
+}
 ```
 ### 从外部浏览器、其它APP打开
 只要在AndroidManifest.xml注册了RouterCenterActivity，即可变成经典的Uri打开，可以支持外部浏览器、其它APP打开内部的Activity。
