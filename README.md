@@ -196,5 +196,7 @@ Routers.setFilter(new Filter() {
 ### 其它说明
 #### 多对一映射
 一个Activity支持配置多个路径，也支持完整的URL配置
+```java
 @RouterActivity({"second", "second2", "other2://www.thejoyrun.com/second", "joyrun://www.thejoyrun.com/second"})
 public class SecondActivity extends Activity {}
+```
