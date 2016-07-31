@@ -200,3 +200,14 @@ Routers.setFilter(new Filter() {
 @RouterActivity({"second", "second2", "other2://www.thejoyrun.com/second", "joyrun://www.thejoyrun.com/second"})
 public class SecondActivity extends Activity {}
 ```
+#### 手工注册Activity
+手工注册，也支持路径注册，也支持完整路径注册，支持多种scheme
+```
+Routers.register(new ActivityRouteTableInitializer() {
+    @Override
+    public void initRouterTable(Map<String, Class<? extends Activity>> router) {
+        router.put("second2", SecondActivity.class);
+        router.put("other://www.thejoyrun.com/second", SecondActivity.class);
+    }
+});
+```
