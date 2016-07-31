@@ -26,8 +26,8 @@ public class SecondActivity extends BaseActivity {
     @RouterField("manger")
     private Boolean manger;
 
-    @RouterField("user")
-    private User user;
+//    @RouterField("user")
+//    private User user;
 
 
     @Override
