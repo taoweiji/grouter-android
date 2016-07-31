@@ -27,3 +27,24 @@ public class SecondActivity extends Activity {
 Routers.init("joyrun");//设置Scheme
 Routers.startActivity(context, "joyrun://second?uid=233");
 ```
+
+### 多级跳转
+
+```
+@RouterActivity("third")
+public class ThirdActivity extends BaseActivity {
+    @RouterField("uid")
+    private int uid;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_third);
+        Routers.inject(this);
+        Log.e("uid", String.valueOf(uid));
+    }
+}
+```
+```
+//先打开SecondActivity，再打开ThirdActivity
+Routers.startActivity(context, "joyrun://second/third?uid=233");
+```
