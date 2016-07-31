@@ -16,6 +16,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Routers.init("joyrun");
+        Routers.setHttpHost("www.thejoyrun.com");
         Routers.register(new ActivityRouteTableInitializer() {
             @Override
             public void initRouterTable(Map<String, Class<? extends Activity>> router) {

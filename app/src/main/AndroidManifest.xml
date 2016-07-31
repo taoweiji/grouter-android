@@ -16,17 +16,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:label="SecondActivity" android:name=".SecondActivity" />
+        <activity
+            android:name=".SecondActivity"
+            android:label="SecondActivity" />
         <activity android:name="com.thejoyrun.router.RouterCenterActivity">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
-
                 <action android:name="android.intent.action.VIEW" />
-
                 <data android:scheme="joyrun" />
             </intent-filter>
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.VIEW" />
+                <data android:host="www.thejoyrun.com" android:scheme="http" />
+            </intent-filter>
         </activity>
-        <activity android:label="ThirdActivity" android:name=".ThirdActivity"></activity>
+        <activity
+            android:name=".ThirdActivity"
+            android:label="ThirdActivity"></activity>
     </application>
 
 </manifest>

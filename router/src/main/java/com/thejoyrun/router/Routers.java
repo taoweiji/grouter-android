@@ -18,6 +18,7 @@ public class Routers {
     private static final String TAG = "Routers";
     private static Map<String, Class<? extends Activity>> sRouter = new HashMap<>();
     private static String sScheme = "routers";
+    private static String sHttpHost = "";
 
     private Routers(Activity activity) {
         activity.getIntent().getExtras();
@@ -145,6 +146,14 @@ public class Routers {
             new Throwable(url + "can not startActivity").printStackTrace();
         }
         return false;
+    }
+
+    public static String getHttpHost() {
+        return sHttpHost;
+    }
+
+    public static void setHttpHost(String httpHost) {
+        Routers.sHttpHost = httpHost;
     }
 
     public static String getScheme() {
