@@ -151,6 +151,7 @@ dependencies {
 }
 ```
 ### 初始化
+建议在Application进行初始化
 ```java
 // 必填，填写独特的scheme，避免和其它APP重复
 Routers.init("joyrun");
