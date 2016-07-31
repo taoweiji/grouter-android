@@ -64,5 +64,23 @@ intent.setData(Uri.parse("joyrun://second?uid=233"));
 intent.putExtra("name", "Wiki");
 startActivity(intent);
 ```
-
+### 从外部浏览器、其它APP打开
+只要在AndroidManifest.xml注册了RouterCenterActivity，即可变成经典的Uri打开，可以支持外部浏览器、其它APP打开内部的Activity。
+```
+<activity android:name="com.thejoyrun.router.RouterCenterActivity">
+    <intent-filter>
+        <category android:name="android.intent.category.DEFAULT" />
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="joyrun" />
+    </intent-filter>
+</activity>
+```
+```
+// Java代码调用
+startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("joyrun://second?uid=233&name=Wiki")));
+```
+```
+// HTML方式，系统浏览器（不支持微信）
+<a href="joyrun://second?uid=233&name=Wiki"></a>
+```
 
