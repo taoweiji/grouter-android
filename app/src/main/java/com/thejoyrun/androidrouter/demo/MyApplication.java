@@ -20,6 +20,7 @@ public class MyApplication extends Application {
             @Override
             public void initRouterTable(Map<String, Class<? extends Activity>> router) {
                 router.put("second2", SecondActivity.class);
+                router.put("other://www.thejoyrun.com/second", SecondActivity.class);
             }
         });
     }

@@ -55,7 +55,13 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("joyrun://second?uid=233&age=24")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("joyrun://second?uid=233&age=24")));
+            }
+        });
+        findViewById(R.id.button6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Routers.startActivity(MainActivity.this, "other://www.thejoyrun.com/second?uid=233&age=24");
             }
         });
 

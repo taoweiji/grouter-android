@@ -103,10 +103,7 @@ public class Routers {
 
     public static boolean startActivity(Context context, String url) {
         Uri uri = Uri.parse(url);
-        if (!sScheme.equals(uri.getScheme())) {
-            return false;
-        }
-        Class clazz = sRouter.get(uri.getHost());
+        Class clazz = getActivityClass(url, uri);
         if (clazz != null) {
             Intent intent = new Intent(context, clazz);
             intent.setData(uri);
@@ -121,12 +118,24 @@ public class Routers {
         return false;
     }
 
+    private static Class<? extends Activity> getActivityClass(String url, Uri uri) {
+        String key;
+        if (!sScheme.equals(uri.getScheme())) {
+            int tmp = url.indexOf('?');
+            if (tmp > 0) {
+                key = url.substring(0, tmp);
+            } else {
+                key = url;
+            }
+        } else {
+            key = uri.getHost();
+        }
+        return sRouter.get(key);
+    }
+
     public static boolean startActivityForResult(Activity context, String url, int requestCode) {
         Uri uri = Uri.parse(url);
-        if (!sScheme.equals(uri.getScheme())) {
-            return false;
-        }
-        Class clazz = sRouter.get(uri.getHost());
+        Class clazz = getActivityClass(url, uri);
         if (clazz != null) {
             Intent intent = new Intent(context, clazz);
             intent.setData(uri);
