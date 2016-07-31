@@ -84,3 +84,24 @@ startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("joyrun://second?uid=233&
 <a href="joyrun://second?uid=233&name=Wiki">打开JoyrunApp的SecondActivity</a>
 ```
 
+### 支持HTTP协议
+```
+<activity android:name="com.thejoyrun.router.RouterCenterActivity">
+    <intent-filter>
+        <category android:name="android.intent.category.DEFAULT" />
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="joyrun" />
+    </intent-filter>
+    <intent-filter>
+        <category android:name="android.intent.category.DEFAULT" />
+        <action android:name="android.intent.action.VIEW" />
+        <data android:host="www.thejoyrun.com" android:scheme="http" />
+    </intent-filter>
+</activity>
+```
+如果支持HTTP协议，那么URL的结构就要做些修改
+```
+// joyrun://second?uid=233
+// =>
+http://www.thejoyrun.com/second?uid=233
+```
