@@ -81,6 +81,6 @@ startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("joyrun://second?uid=233&
 ```
 ```
 // HTML方式，系统浏览器（不支持微信）
-<a href="joyrun://second?uid=233&name=Wiki"></a>
+<a href="joyrun://second?uid=233&name=Wiki">打开JoyrunApp的SecondActivity</a>
 ```
 
