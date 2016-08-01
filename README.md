@@ -103,6 +103,7 @@ public class SecondActivity extends Activity {
 ```xml
 <activity android:name="com.thejoyrun.router.RouterCenterActivity">
     <intent-filter>
+    	<category android:name="android.intent.category.BROWSABLE" />
         <category android:name="android.intent.category.DEFAULT" />
         <action android:name="android.intent.action.VIEW" />
         <data android:scheme="joyrun" />
@@ -124,11 +125,13 @@ startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("joyrun://second?uid=233&
     <intent-filter>
         <category android:name="android.intent.category.DEFAULT" />
         <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.BROWSABLE" />
         <data android:scheme="joyrun" />
     </intent-filter>
     <intent-filter>
         <category android:name="android.intent.category.DEFAULT" />
         <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.BROWSABLE" />
         <data android:host="www.thejoyrun.com" android:scheme="http" />
     </intent-filter>
 </activity>
@@ -194,12 +197,14 @@ Routers.setFilter(new Filter() {
 <activity android:name="com.thejoyrun.router.RouterCenterActivity">
     <!--配置支持系统浏览器和其它APP打开-->
     <intent-filter>
+    	<category android:name="android.intent.category.BROWSABLE" />
         <category android:name="android.intent.category.DEFAULT" />
         <action android:name="android.intent.action.VIEW" />
         <data android:scheme="joyrun" />
     </intent-filter>
     <!--如果需要支持HTTP协议，就要配置一下-->
     <intent-filter>
+    	<category android:name="android.intent.category.BROWSABLE" />
         <category android:name="android.intent.category.DEFAULT" />
         <action android:name="android.intent.action.VIEW" />
         <data android:host="www.thejoyrun.com" android:scheme="http" />
