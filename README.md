@@ -225,3 +225,13 @@ Routers.register(new ActivityRouteTableInitializer() {
     }
 });
 ```
+#### URL过滤器
+通过URL过滤器可以对URL进行过滤，可以通过过滤器对URL进行修改，也可以拦截URL，不让路由器打开。
+```
+Routers.setFilter(new Filter() {
+    public String doFilter(String url) {
+    	//return url.replace("joyrun://www.thejoyrun.com/","joyrun://");
+        return url;
+    }
+});
+```
