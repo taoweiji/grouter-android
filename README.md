@@ -1,7 +1,6 @@
-# ActivityRouter路由框架：通过注解方式来实现URL打开Activity
 [![](https://jitpack.io/v/joyrun/ActivityRouter.svg)](https://jitpack.io/#joyrun/ActivityRouter)
 
-通过注解方式来实现URL打开Activity功能，并支持在WebView和外部浏览器使用，支持多级Activity跳转，支持Bundle、Uri参数注入并转换参数类型。
+通过注解实现URL打开Activity，并支持在WebView和外部浏览器使用，支持多级Activity跳转，支持Bundle、Uri参数注入并转换参数类型。
 ### 特点
 1. 支持注解方式、手动方式注册Activity。
 2. 支持注入Bundle、Uri的参数并转换格式。
@@ -104,6 +103,7 @@ public class SecondActivity extends Activity {
 ```xml
 <activity android:name="com.thejoyrun.router.RouterCenterActivity">
     <intent-filter>
+    	<category android:name="android.intent.category.BROWSABLE" />
         <category android:name="android.intent.category.DEFAULT" />
         <action android:name="android.intent.action.VIEW" />
         <data android:scheme="joyrun" />
@@ -125,12 +125,9 @@ startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("joyrun://second?uid=233&
     <intent-filter>
         <category android:name="android.intent.category.DEFAULT" />
         <action android:name="android.intent.action.VIEW" />
-        <data android:scheme="joyrun" />
-    </intent-filter>
-    <intent-filter>
-        <category android:name="android.intent.category.DEFAULT" />
-        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.BROWSABLE" />
         <data android:host="www.thejoyrun.com" android:scheme="http" />
+        <data android:scheme="joyrun" />
     </intent-filter>
 </activity>
 ```
@@ -193,17 +190,12 @@ Routers.setFilter(new Filter() {
 如果需要从外部浏览器打开，就要注册
 ```xml
 <activity android:name="com.thejoyrun.router.RouterCenterActivity">
-    <!--配置支持系统浏览器和其它APP打开-->
     <intent-filter>
-        <category android:name="android.intent.category.DEFAULT" />
-        <action android:name="android.intent.action.VIEW" />
-        <data android:scheme="joyrun" />
-    </intent-filter>
-    <!--如果需要支持HTTP协议，就要配置一下-->
-    <intent-filter>
+    	<category android:name="android.intent.category.BROWSABLE" />
         <category android:name="android.intent.category.DEFAULT" />
         <action android:name="android.intent.action.VIEW" />
         <data android:host="www.thejoyrun.com" android:scheme="http" />
+        <data android:scheme="joyrun" />
     </intent-filter>
 </activity>
 ```
@@ -235,3 +227,21 @@ Routers.setFilter(new Filter() {
     }
 });
 ```
+
+
+## License
+
+    Copyright 2016 Joyrun, Inc.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
