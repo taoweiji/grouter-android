@@ -1,5 +1,5 @@
 # Android的Activity路由框架
-[![](https://jitpack.io/v/joyrun/AndroidRouter.svg)](https://jitpack.io/#joyrun/AndroidRouter)
+[![](https://jitpack.io/v/joyrun/ActivityRouter.svg)](https://jitpack.io/#joyrun/ActivityRouter)
 
 通过注解方式来实现URL打开Activity功能，并支持在WebView和外部浏览器使用，支持多级Activity跳转，支持Bundle、Uri参数注入并转换参数类型。
 ### 特点
@@ -162,8 +162,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
-    compile 'com.github.joyrun.AndroidRouter:router:0.3.1'
-    apt 'com.github.joyrun.AndroidRouter:router-compiler:0.3.1'
+    compile 'com.github.joyrun.ActivityRouter:router:0.3.1'
+    apt 'com.github.joyrun.ActivityRouter:router-compiler:0.3.1'
 }
 ```
 ### 初始化
