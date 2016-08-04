@@ -36,7 +36,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             startActivity(intent);
         } else if (v.getId() == R.id.button2) {
             Intent intent = new Intent(this, SecondActivity.class);
-            intent.setData(Uri.parse("joyrun://second?uid=233&age=24"));
+            intent.setData(Uri.parse("joyrun://second?uid=233&age=24&name=Wiki"));
             startActivity(intent);
         } else if (v.getId() == R.id.button3) {
             Intent intent = new Intent(this, SecondActivity.class);

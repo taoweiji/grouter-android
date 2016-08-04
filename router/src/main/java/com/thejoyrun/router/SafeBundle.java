@@ -64,7 +64,14 @@ public class SafeBundle {
     }
 
     public String getString(String key, String defaultValue) {
-        return bundle.getString(key, defaultValue);
+        Object o = bundle.get(key);
+        if (o == null && uri != null) {
+            o = uri.getQueryParameter(key);
+        }
+        if (o == null) {
+            return defaultValue;
+        }
+        return o.toString();
     }
 
     public double getDouble(String key, double defaultValue) {
