@@ -158,8 +158,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
-    compile 'com.github.joyrun.ActivityRouter:router:0.3.1'
-    apt 'com.github.joyrun.ActivityRouter:router-compiler:0.3.1'
+    compile 'com.github.joyrun.ActivityRouter:router:0.3.4'
+    apt 'com.github.joyrun.ActivityRouter:router-compiler:0.3.4'
 }
 ```
 ### 初始化
