@@ -15,8 +15,8 @@ public class SecondActivity extends BaseActivity {
     @RouterField("age")
     private int age;
 
-    @RouterField("time")
-    private long time;
+//    @RouterField("time")
+//    private long time;
 
     @RouterField("name")
     private String name;
@@ -39,7 +39,6 @@ public class SecondActivity extends BaseActivity {
         Log.e("解析耗时", String.valueOf(System.currentTimeMillis() - time));
         Log.e("uid", String.valueOf(uid));
         Log.e("age", String.valueOf(age));
-        Log.e("time", String.valueOf(time));
         Log.e("name", String.valueOf(name));
         Log.e("man", String.valueOf(man));
         Log.e("manger", String.valueOf(manger));

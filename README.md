@@ -103,9 +103,15 @@ public class SecondActivity extends Activity {
 ```xml
 <activity android:name="com.thejoyrun.router.RouterCenterActivity">
     <intent-filter>
-    	<category android:name="android.intent.category.BROWSABLE" />
-        <category android:name="android.intent.category.DEFAULT" />
         <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:host="www.thejoyrun.com" android:scheme="http" />
+    </intent-filter>
+    <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
         <data android:scheme="joyrun" />
     </intent-filter>
 </activity>
@@ -123,10 +129,15 @@ startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("joyrun://second?uid=233&
 ```xml
 <activity android:name="com.thejoyrun.router.RouterCenterActivity">
     <intent-filter>
-        <category android:name="android.intent.category.DEFAULT" />
         <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
         <data android:host="www.thejoyrun.com" android:scheme="http" />
+    </intent-filter>
+    <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
         <data android:scheme="joyrun" />
     </intent-filter>
 </activity>
@@ -191,10 +202,15 @@ Routers.setFilter(new Filter() {
 ```xml
 <activity android:name="com.thejoyrun.router.RouterCenterActivity">
     <intent-filter>
-    	<category android:name="android.intent.category.BROWSABLE" />
-        <category android:name="android.intent.category.DEFAULT" />
         <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
         <data android:host="www.thejoyrun.com" android:scheme="http" />
+    </intent-filter>
+    <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
         <data android:scheme="joyrun" />
     </intent-filter>
 </activity>
