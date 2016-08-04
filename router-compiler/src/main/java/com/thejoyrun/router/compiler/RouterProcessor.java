@@ -111,10 +111,13 @@ public class RouterProcessor extends AbstractProcessor {
                 continue;
             }
             String name = element.getSimpleName().toString();
+            if (name.length() >= 2 && name.charAt(0) == 'm' && Character.isUpperCase(name.charAt(1))){
+                name = name.substring(1,2).toLowerCase() + name.substring(2);
+            }
             String upperName = name.substring(0, 1).toUpperCase() + name.substring(1);
             MethodSpec methodSpec = MethodSpec.methodBuilder("with" + upperName)
                     .addParameter(TypeName.get(element.asType()), name)
-                    .addStatement(String.format("put(\"%s\",%s )", name, name))
+                    .addStatement(String.format("put(\"%s\",%s )", routerField.value()[0], name))
                     .addStatement("return this")
                     .returns(className)
                     .addModifiers(Modifier.PUBLIC)
