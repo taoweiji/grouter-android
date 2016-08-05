@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,22 +44,13 @@ public class Routers {
         List<Field> fields = getDeclaredFields(clazz);
         System.out.println(fields.size());
         for (Field field : fields) {
-            Annotation[] annotations = field.getDeclaredAnnotations();
-            RouterField routerField = null;
-            for (Annotation item : annotations){
-                if (item instanceof RouterField){
-                    routerField = (RouterField) item;
-                    break;
-                }
-            }
-
-
-            if (routerField == null) {
+            RouterField annotation = field.getAnnotation(RouterField.class);
+            if (annotation == null) {
                 continue;
             }
             String type = field.getGenericType().toString();
             field.setAccessible(true);
-            String[] names = routerField.value();
+            String[] names = annotation.value();
             try {
                 for (String name : names){
                     if (!bundle.containsKey(name)) {
