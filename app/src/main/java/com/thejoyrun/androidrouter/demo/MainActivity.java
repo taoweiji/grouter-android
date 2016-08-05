@@ -55,7 +55,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 //                Routers.startActivity(this, "other2://www.thejoyrun.com/second?uid=233&age=24");
             Routers.startActivity(this, "joyrun://www.thejoyrun.com/second?uid=233&age=24");
         } else if (v.getId() == R.id.button7) {
-            RoutersHelper.getSecondActivityHelper().withUid(24).withName("Wiki").start(this);
+            RoutersHelper.getSecondActivityHelper().withUid(24).withName("http://php.test.thejoyrun.com/test/test3.php?joyrun_extra=joyrun%3A%2F%2Fwww.thejoyrun.com%2Fhot_topic%3Ftopic_name%3D跑步不说谎").start(this);
         }
     }
 }

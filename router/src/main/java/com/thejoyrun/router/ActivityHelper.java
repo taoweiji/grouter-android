@@ -3,6 +3,8 @@ package com.thejoyrun.router;
 import android.app.Activity;
 import android.content.Context;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -25,7 +27,11 @@ public class ActivityHelper {
             if (i == 0) {
                 builder.append('?');
             }
-            builder.append(key).append('=').append(params.get(key));
+            try {
+                builder.append(key).append('=').append(URLEncoder.encode(params.get(key),"UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
             if (i < (keys.size() - 1)) {
                 builder.append('&');
             }
