@@ -1,6 +1,7 @@
 package com.thejoyrun.router;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -148,7 +149,7 @@ public class Routers {
         return null;
     }
 
-    public static boolean startActivityForResult(Activity context, String url, int requestCode) {
+    public static boolean startActivityForResult(Activity activity, String url, int requestCode) {
         if (sFilter != null) {
             url = sFilter.doFilter(url);
         }
@@ -158,9 +159,28 @@ public class Routers {
         Uri uri = Uri.parse(url);
         Class clazz = getActivityClass(url, uri);
         if (clazz != null) {
-            Intent intent = new Intent(context, clazz);
+            Intent intent = new Intent(activity, clazz);
             intent.setData(uri);
-            context.startActivityForResult(intent, requestCode);
+            activity.startActivityForResult(intent, requestCode);
+            return true;
+        } else {
+            new Throwable(url + "can not startActivity").printStackTrace();
+        }
+        return false;
+    }
+    public static boolean startActivityForResult(Fragment fragment, String url, int requestCode) {
+        if (sFilter != null) {
+            url = sFilter.doFilter(url);
+        }
+        if (TextUtils.isEmpty(url)) {
+            return false;
+        }
+        Uri uri = Uri.parse(url);
+        Class clazz = getActivityClass(url, uri);
+        if (clazz != null) {
+            Intent intent = new Intent(fragment.getActivity(), clazz);
+            intent.setData(uri);
+            fragment.startActivityForResult(intent, requestCode);
             return true;
         } else {
             new Throwable(url + "can not startActivity").printStackTrace();

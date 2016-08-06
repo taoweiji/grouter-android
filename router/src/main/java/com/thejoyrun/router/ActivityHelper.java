@@ -1,6 +1,7 @@
 package com.thejoyrun.router;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 
 import java.io.UnsupportedEncodingException;
@@ -47,6 +48,10 @@ public class ActivityHelper {
     public void startForResult(Activity activity, int requestCode) {
         Routers.startActivityForResult(activity, getUrl(), requestCode);
     }
+    public void startForResult(Fragment fragment, int requestCode) {
+        Routers.startActivityForResult(fragment, getUrl(), requestCode);
+    }
+
 
     public String put(String key, String value) {
         return params.put(key, value);
