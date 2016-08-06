@@ -16,14 +16,13 @@ import java.util.Map;
 /**
  * Created by Wiki on 16/7/28.
  */
-public class Routers {
-    private static final String TAG = "Routers";
+public class Router {
     private static Map<String, Class<? extends Activity>> sRouter = new HashMap<>();
-    private static String sScheme = "routers";
+    private static String sScheme = "router";
     private static String sHttpHost = "";
     private static Filter sFilter;
 
-    private Routers(Activity activity) {
+    private Router(Activity activity) {
         activity.getIntent().getExtras();
     }
 
@@ -92,10 +91,16 @@ public class Routers {
         if (activity.getIntent().getData() != null) {
             String url = activity.getIntent().getDataString();
             RouterActivity routerActivity = (RouterActivity) clazz.getAnnotation(RouterActivity.class);
-            if (routerActivity != null && url.contains(routerActivity.value() + "/")) {
-                url = url.replace(routerActivity.value() + "/", "");
-                Routers.startActivity(activity, url);
+            if (routerActivity != null){
+                for (String path : routerActivity.value()){
+                    if (url.contains(path + "/")) {
+                        url = url.replace(path + "/", "");
+                        Router.startActivity(activity, url);
+                        break;
+                    }
+                }
             }
+
             //joyrun://second/second2?
             //joyrun://second2?
             //joyrun://second2?
@@ -193,7 +198,7 @@ public class Routers {
     }
 
     public static void setHttpHost(String httpHost) {
-        Routers.sHttpHost = httpHost;
+        Router.sHttpHost = httpHost;
     }
 
     public static String getScheme() {
@@ -201,7 +206,7 @@ public class Routers {
     }
 
     public static void init(String scheme) {
-        Routers.sScheme = scheme;
+        Router.sScheme = scheme;
         try {
             Class.forName("com.thejoyrun.router.AptActivityRouteTableInitializer");
         } catch (ClassNotFoundException e) {
@@ -210,7 +215,7 @@ public class Routers {
     }
 
     public static void setFilter(Filter filter) {
-        Routers.sFilter = filter;
+        Router.sFilter = filter;
     }
 
 

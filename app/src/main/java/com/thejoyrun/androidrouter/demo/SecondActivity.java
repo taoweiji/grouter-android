@@ -3,9 +3,9 @@ package com.thejoyrun.androidrouter.demo;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.thejoyrun.router.Router;
 import com.thejoyrun.router.RouterActivity;
 import com.thejoyrun.router.RouterField;
-import com.thejoyrun.router.Routers;
 
 @RouterActivity({"second", "other2://www.thejoyrun.com/second", "joyrun://www.thejoyrun.com/second"})
 public class SecondActivity extends BaseActivity {
@@ -35,7 +35,7 @@ public class SecondActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         long time = System.currentTimeMillis();
-        Routers.inject(this);
+        Router.inject(this);
         Log.e("解析耗时", String.valueOf(System.currentTimeMillis() - time));
         Log.e("uid", String.valueOf(uid));
         Log.e("age", String.valueOf(age));

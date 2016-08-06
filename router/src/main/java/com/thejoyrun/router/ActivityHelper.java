@@ -21,7 +21,7 @@ public class ActivityHelper {
 
     public String getUrl() {
         StringBuilder builder = new StringBuilder();
-        builder.append(Routers.getScheme()).append("://").append(host);
+        builder.append(Router.getScheme()).append("://").append(host);
         Set<String> keys = params.keySet();
         int i = 0;
         for (String key : keys) {
@@ -42,14 +42,14 @@ public class ActivityHelper {
     }
 
     public void start(Context context) {
-        Routers.startActivity(context, getUrl());
+        Router.startActivity(context, getUrl());
     }
 
     public void startForResult(Activity activity, int requestCode) {
-        Routers.startActivityForResult(activity, getUrl(), requestCode);
+        Router.startActivityForResult(activity, getUrl(), requestCode);
     }
     public void startForResult(Fragment fragment, int requestCode) {
-        Routers.startActivityForResult(fragment, getUrl(), requestCode);
+        Router.startActivityForResult(fragment, getUrl(), requestCode);
     }
 
 

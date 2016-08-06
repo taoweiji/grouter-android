@@ -16,10 +16,10 @@ public class RouterCenterActivity extends Activity {
         Uri data = getIntent().getData();
         if (data != null) {
             String url = getIntent().getDataString();
-            if (data.getScheme().equals("http") && !TextUtils.isEmpty(Routers.getHttpHost()) && Routers.getHttpHost().equals(data.getHost())) {
-                url = url.replaceFirst("http", Routers.getScheme()).replace(Routers.getHttpHost() + "/", "");
+            if (data.getScheme().equals("http") && !TextUtils.isEmpty(Router.getHttpHost()) && Router.getHttpHost().equals(data.getHost())) {
+                url = url.replaceFirst("http", Router.getScheme()).replace(Router.getHttpHost() + "/", "");
             }
-            Routers.startActivity(this, url);
+            Router.startActivity(this, url);
         }
         this.finish();
         Log.e("中央路由", "RouterCenterActivity");

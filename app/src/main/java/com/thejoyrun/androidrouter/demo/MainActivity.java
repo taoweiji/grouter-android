@@ -5,8 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
-import com.thejoyrun.router.Routers;
-import com.thejoyrun.router.RoutersHelper;
+import com.thejoyrun.router.Router;
+import com.thejoyrun.router.RouterHelper;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -47,15 +47,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             intent.putExtra("manger", "true");
             startActivity(intent);
         } else if (v.getId() == R.id.button4) {
-            Routers.startActivity(this, "joyrun://second/third?uid=233&age=24");
+            Router.startActivity(this, "joyrun://second/third?uid=233&age=24");
         } else if (v.getId() == R.id.button5) {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("joyrun://second?uid=233&age=24")));
         } else if (v.getId() == R.id.button6) {
-//                Routers.startActivity(this, "joyrun://www.thejoyrun.com/second?uid=233&age=24");
-//                Routers.startActivity(this, "other2://www.thejoyrun.com/second?uid=233&age=24");
-            Routers.startActivity(this, "joyrun://www.thejoyrun.com/second?uid=233&age=24");
+//                Router.startActivity(this, "joyrun://www.thejoyrun.com/second?uid=233&age=24");
+//                Router.startActivity(this, "other2://www.thejoyrun.com/second?uid=233&age=24");
+            Router.startActivity(this, "joyrun://www.thejoyrun.com/second?uid=233&age=24");
         } else if (v.getId() == R.id.button7) {
-            RoutersHelper.getSecondActivityHelper().withUid(24).withName("http://php.test.thejoyrun.com/test/test3.php?joyrun_extra=joyrun%3A%2F%2Fwww.thejoyrun.com%2Fhot_topic%3Ftopic_name%3D跑步不说谎").start(this);
+            RouterHelper.getSecondActivityHelper().withUid(24).withName("http://php.test.thejoyrun.com/test/test3.php?joyrun_extra=joyrun%3A%2F%2Fwww.thejoyrun.com%2Fhot_topic%3Ftopic_name%3D跑步不说谎").start(this);
         }
     }
 }

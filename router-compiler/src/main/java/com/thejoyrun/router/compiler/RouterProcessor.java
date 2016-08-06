@@ -44,7 +44,7 @@ public class RouterProcessor extends AbstractProcessor {
         TypeSpec.Builder typeSpec = TypeSpec.classBuilder("AptActivityRouteTableInitializer")
                 .addSuperinterface(activityRouteTableInitializer)
                 .addModifiers(Modifier.PUBLIC)
-                .addStaticBlock(CodeBlock.of("Routers.register(new AptActivityRouteTableInitializer());"));
+                .addStaticBlock(CodeBlock.of("Router.register(new AptActivityRouteTableInitializer());"));
 
         TypeElement activityRouteTableInitializertypeElement = elementUtils.getTypeElement(activityRouteTableInitializer.toString());
         List<? extends Element> members = elementUtils.getAllMembers(activityRouteTableInitializertypeElement);
@@ -78,14 +78,14 @@ public class RouterProcessor extends AbstractProcessor {
                     .build();
             methodSpecs.add(methodSpec);
         }
-        TypeSpec typeSpecRoutersHelper = TypeSpec.classBuilder("RoutersHelper")
+        TypeSpec typeSpecRouterHelper = TypeSpec.classBuilder("RouterHelper")
                 .addModifiers(Modifier.PUBLIC)
                 .addMethods(methodSpecs)
                 .build();
-        JavaFile javaFileRoutersHelper = JavaFile.builder("com.thejoyrun.router", typeSpecRoutersHelper).build();
+        JavaFile javaFileRouterHelper = JavaFile.builder("com.thejoyrun.router", typeSpecRouterHelper).build();
 
         try {
-            javaFileRoutersHelper.writeTo(processingEnv.getFiler());
+            javaFileRouterHelper.writeTo(processingEnv.getFiler());
         } catch (IOException e) {
             e.printStackTrace();
         }

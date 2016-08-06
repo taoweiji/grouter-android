@@ -7,7 +7,7 @@ import android.content.Intent;
 /**
  * Created by Wiki on 16/7/28.
  */
-public class RoutersActivity {
+public class RouterActivity {
     public static void openMainActivity(Context context,int uid, int age, long time) {
         Intent intent = new Intent();
         intent.putExtra("uid", uid);

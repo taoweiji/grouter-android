@@ -19,17 +19,17 @@ public class SecondActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-        Routers.inject(this);
+        Router.inject(this);
         Log.e("uid", String.valueOf(uid));
     }
 }
 ```
 ```java
-Routers.init("joyrun");//设置Scheme
+Router.init("joyrun");//设置Scheme
 // 方式一
-RoutersHelper.getSecondActivityHelper().withUid(24).start(this);
+RouterHelper.getSecondActivityHelper().withUid(24).start(this);
 // 方式二
-Routers.startActivity(context, "joyrun://second?uid=233");
+Router.startActivity(context, "joyrun://second?uid=233");
 // 方式三
 // 如果AndroidManifest.xml注册了RouterCenterActivity，也可以通过下面的方式打开，如果是APP内部使用，不建议使用。
 // startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("joyrun://second?uid=233")));
@@ -37,10 +37,10 @@ Routers.startActivity(context, "joyrun://second?uid=233");
 ### 目标Activity的URL构造器访问
 使用URL访问有一个缺点就是难以得以目标Activity所需要的参数，同时也需要手工生成URL，使用并不友好，填写的参数名称也容易出错。所以我们就做了一个用于生成目标Activity的URL构造器，减少我们写参数名的代码。会根据注解了RouterField的成员变量生成构造器。
 ```java
-// Routers.startActivity(context, "joyrun://second?uid=233&name=Wiki");
-RoutersHelper.getSecondActivityHelper().withUid(233).withName("Wiki").start(this);
-// Routers.startActivityForResult(context, "joyrun://second?uid=233&name=Wiki",1);
-RoutersHelper.getSecondActivityHelper().withUid(233).withName("Wiki").startForResult(this,1);
+// Router.startActivity(context, "joyrun://second?uid=233&name=Wiki");
+RouterHelper.getSecondActivityHelper().withUid(233).withName("Wiki").start(this);
+// Router.startActivityForResult(context, "joyrun://second?uid=233&name=Wiki",1);
+RouterHelper.getSecondActivityHelper().withUid(233).withName("Wiki").startForResult(this,1);
 ```
 
 ### 多级跳转
@@ -54,17 +54,17 @@ public class ThirdActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
-        Routers.inject(this);
+        Router.inject(this);
         Log.e("uid", String.valueOf(uid));
     }
 }
 ```
 ```java
 // 先打开SecondActivity，再打开ThirdActivity
-Routers.startActivity(context, "joyrun://second/third?uid=233");
+Router.startActivity(context, "joyrun://second/third?uid=233");
 ```
 ### Bundle、Uri参数注入（支持单独使用）
-Routers.inject(this)方法可以`单独使用`，可以实现注入Bundle、Uri的参数，由于Uri的参数是String类型，所以该框架还支持把String格式的类型转换为目标类型。目前该方法支持double、float、int、boolean、String数据类型。
+Router.inject(this)方法可以`单独使用`，可以实现注入Bundle、Uri的参数，由于Uri的参数是String类型，所以该框架还支持把String格式的类型转换为目标类型。目前该方法支持double、float、int、boolean、String数据类型。
 ```java
 // Bundle
 Intent intent = new Intent(this, SecondActivity.class);
@@ -92,7 +92,7 @@ public class SecondActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-        Routers.inject(this);
+        Router.inject(this);
         Log.e("uid", String.valueOf(uid));
         Log.e("name", String.valueOf(name));
     }
@@ -166,11 +166,11 @@ dependencies {
 建议在Application进行初始化
 ```java
 // 必填，填写独特的scheme，避免和其它APP重复
-Routers.init("joyrun");
+Router.init("joyrun");
 // 可选，如果需要支持HTTP协议就需要填写
-Routers.setHttpHost("www.thejoyrun.com");
+Router.setHttpHost("www.thejoyrun.com");
 // 可选，手工注册Activity
-Routers.register(new ActivityRouteTableInitializer() {
+Router.register(new ActivityRouteTableInitializer() {
     @Override
     public void initRouterTable(Map<String, Class<? extends Activity>> router) {
         router.put("second2", SecondActivity.class);
@@ -178,7 +178,7 @@ Routers.register(new ActivityRouteTableInitializer() {
     }
 });
 // 可选，针对自己的业务做调整
-Routers.setFilter(new Filter() {
+Router.setFilter(new Filter() {
     public String doFilter(String url) {
     	//return url.replace("joyrun://www.thejoyrun.com/","joyrun://");
         return url;
@@ -213,7 +213,7 @@ public class SecondActivity extends Activity {}
 #### 手工注册Activity
 手工注册，也支持路径注册，也支持完整路径注册，支持多种scheme
 ```
-Routers.register(new ActivityRouteTableInitializer() {
+Router.register(new ActivityRouteTableInitializer() {
     @Override
     public void initRouterTable(Map<String, Class<? extends Activity>> router) {
         router.put("second2", SecondActivity.class);
@@ -224,7 +224,7 @@ Routers.register(new ActivityRouteTableInitializer() {
 #### URL过滤器
 通过URL过滤器可以对URL进行过滤，可以通过过滤器对URL进行修改，也可以拦截URL，不让路由器打开。
 ```
-Routers.setFilter(new Filter() {
+Router.setFilter(new Filter() {
     public String doFilter(String url) {
     	//return url.replace("joyrun://www.thejoyrun.com/","joyrun://");
         return url;
