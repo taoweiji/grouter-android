@@ -231,7 +231,11 @@ Router.setFilter(new Filter() {
     }
 });
 ```
-
+### 混淆
+如果项目用到了混淆，记得需要添加下面代码到proguard-rules
+```
+-keep class * extends com.thejoyrun.router.ActivityRouteTableInitializer { *; }
+```
 
 ## License
 
