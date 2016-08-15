@@ -172,7 +172,7 @@ Router.setHttpHost("www.thejoyrun.com");
 // 可选，手工注册Activity
 Router.register(new ActivityRouteTableInitializer() {
     @Override
-    public void initRouterTable(Map<String, Class<? extends Activity>> router) {
+    public void init(Map<String, Class<? extends Activity>> router) {
         router.put("second2", SecondActivity.class);
         router.put("other://www.thejoyrun.com/second", SecondActivity.class);
     }
@@ -215,7 +215,7 @@ public class SecondActivity extends Activity {}
 ```
 Router.register(new ActivityRouteTableInitializer() {
     @Override
-    public void initRouterTable(Map<String, Class<? extends Activity>> router) {
+    public void init(Map<String, Class<? extends Activity>> router) {
         router.put("second2", SecondActivity.class);
         router.put("other://www.thejoyrun.com/second", SecondActivity.class);
     }
@@ -234,7 +234,7 @@ Router.setFilter(new Filter() {
 ### 混淆
 如果项目用到了混淆，记得需要添加下面代码到proguard-rules
 ```
--keep class * extends com.thejoyrun.router.ActivityRouteTableInitializer { *; }
+-keep class * extends com.thejoyrun.router.RouterInitializer { *; }
 ```
 
 ## License

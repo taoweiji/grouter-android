@@ -108,8 +108,8 @@ public class Router {
     }
 
 
-    public static void register(ActivityRouteTableInitializer activityRouteTableInitializer) {
-        activityRouteTableInitializer.initRouterTable(sRouter);
+    public static void register(RouterInitializer routerInitializer) {
+        routerInitializer.init(sRouter);
     }
 
     public static boolean startActivity(Context context, String url) {
@@ -208,9 +208,9 @@ public class Router {
     public static void init(String scheme) {
         Router.sScheme = scheme;
         try {
-            Class.forName("com.thejoyrun.router.AptActivityRouteTableInitializer");
+            Class.forName("com.thejoyrun.router.AptRouterInitializer");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 

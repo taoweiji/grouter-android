@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'com.neenbedankt.android-apt'
 
 android {
@@ -6,11 +6,13 @@ android {
     buildToolsVersion '23.0.2'
 
     defaultConfig {
-        applicationId "com.thejoyrun.androidrouter.demo"
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -22,15 +24,17 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:23.4.0'
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.3.0'
     compile project(':router')
     apt project(':router-compiler')
-    compile project(':other_module')
     compile project(':base')
 }
-//apt {
-//    arguments {
-//        targetModuleName 'App'
-//    }
-//}
+apt {
+    arguments {
+        targetModuleName 'Other'
+    }
+}
