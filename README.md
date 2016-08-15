@@ -170,7 +170,7 @@ Router.init("joyrun");
 // 可选，如果需要支持HTTP协议就需要填写
 Router.setHttpHost("www.thejoyrun.com");
 // 可选，手工注册Activity
-Router.register(new ActivityRouteTableInitializer() {
+Router.register(new RouterInitializer() {
     @Override
     public void init(Map<String, Class<? extends Activity>> router) {
         router.put("second2", SecondActivity.class);
@@ -213,7 +213,7 @@ public class SecondActivity extends Activity {}
 #### 手工注册Activity
 手工注册，也支持路径注册，也支持完整路径注册，支持多种scheme
 ```
-Router.register(new ActivityRouteTableInitializer() {
+Router.register(new RouterInitializer() {
     @Override
     public void init(Map<String, Class<? extends Activity>> router) {
         router.put("second2", SecondActivity.class);
