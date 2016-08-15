@@ -233,7 +233,7 @@ Router.setFilter(new Filter() {
     }
 });
 ```
-### 多个Module
+### 支持多个Module
 ActivityRouter框架支持多个Module，以适应多个Module的项目，首先需要在module的`build.gradle`添加：
 ```
 apt {
