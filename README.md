@@ -247,7 +247,7 @@ apt {
 Router.init("joyrun");
 Router.register(new SomeUniqueModuleNameAptRouterInitializer());
 ```
-Module的Activity的构造器，类名就变成了`SomeUniqueModuleNameRouterHelper`
+Module的Activity的URL构造器，中心类名就变成了`SomeUniqueModuleNameRouterHelper`
 
 ### 混淆
 如果项目用到了混淆，记得需要添加下面代码到proguard-rules
