@@ -8,6 +8,7 @@
 4. 支持外部浏览器打开。
 5. 支持HTTP协议。
 6. 支持目标Activity的URL构造器访问。
+7. 支持多个Module。
 
 ### 简单例子
 ```java
@@ -41,6 +42,7 @@ Router.startActivity(context, "joyrun://second?uid=233");
 RouterHelper.getSecondActivityHelper().withUid(233).withName("Wiki").start(this);
 // Router.startActivityForResult(context, "joyrun://second?uid=233&name=Wiki",1);
 RouterHelper.getSecondActivityHelper().withUid(233).withName("Wiki").startForResult(this,1);
+//也可以这样写 new SecondActivityHelper().withUid(233).withName("Wiki").startForResult(this,1);
 ```
 
 ### 多级跳转
@@ -231,6 +233,22 @@ Router.setFilter(new Filter() {
     }
 });
 ```
+### 多个Module
+ActivityRouter框架支持多个Module，以适应多个Module的项目，首先需要在module的`build.gradle`添加：
+```
+apt {
+    arguments {
+        targetModuleName 'SomeUniqueModuleName'
+    }
+}
+```
+`SomeUniqueModuleName`改成这个module专属的名称，然后在主项目初始化的时候添加：
+```
+Router.init("joyrun");
+Router.register(new SomeUniqueModuleNameAptRouterInitializer());
+```
+Module的Activity的构造器，类名就变成了`SomeUniqueModuleNameRouterHelper`
+
 ### 混淆
 如果项目用到了混淆，记得需要添加下面代码到proguard-rules
 ```
