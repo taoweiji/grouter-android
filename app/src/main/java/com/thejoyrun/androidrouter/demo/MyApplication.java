@@ -16,7 +16,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Router.init("joyrun");
+        Router.init("test");
         Router.setHttpHost("www.thejoyrun.com");
         Router.register(new RouterInitializer() {
             @Override
@@ -29,7 +29,7 @@ public class MyApplication extends Application {
 //        Router.setFilter(new Filter() {
 //            @Override
 //            public String doFilter(String url) {
-//                return url.replace("joyrun://www.thejoyrun.com/","joyrun://");
+//                return url.replace("test://www.thejoyrun.com/","test://");
 //            }
 //        });
     }

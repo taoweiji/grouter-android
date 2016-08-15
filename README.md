@@ -26,21 +26,21 @@ public class SecondActivity extends Activity {
 }
 ```
 ```java
-Router.init("joyrun");//设置Scheme
+Router.init("test");//设置Scheme
 // 方式一
 RouterHelper.getSecondActivityHelper().withUid(24).start(this);
 // 方式二
-Router.startActivity(context, "joyrun://second?uid=233");
+Router.startActivity(context, "test://second?uid=233");
 // 方式三
 // 如果AndroidManifest.xml注册了RouterCenterActivity，也可以通过下面的方式打开，如果是APP内部使用，不建议使用。
-// startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("joyrun://second?uid=233")));
+// startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("test://second?uid=233")));
 ```
 ### 目标Activity的URL构造器访问
 使用URL访问有一个缺点就是难以得以目标Activity所需要的参数，同时也需要手工生成URL，使用并不友好，填写的参数名称也容易出错。所以我们就做了一个用于生成目标Activity的URL构造器，减少我们写参数名的代码。会根据注解了RouterField的成员变量生成构造器。
 ```java
-// Router.startActivity(context, "joyrun://second?uid=233&name=Wiki");
+// Router.startActivity(context, "test://second?uid=233&name=Wiki");
 RouterHelper.getSecondActivityHelper().withUid(233).withName("Wiki").start(this);
-// Router.startActivityForResult(context, "joyrun://second?uid=233&name=Wiki",1);
+// Router.startActivityForResult(context, "test://second?uid=233&name=Wiki",1);
 RouterHelper.getSecondActivityHelper().withUid(233).withName("Wiki").startForResult(this,1);
 //也可以这样写 new SecondActivityHelper().withUid(233).withName("Wiki").startForResult(this,1);
 ```
@@ -63,7 +63,7 @@ public class ThirdActivity extends BaseActivity {
 ```
 ```java
 // 先打开SecondActivity，再打开ThirdActivity
-Router.startActivity(context, "joyrun://second/third?uid=233");
+Router.startActivity(context, "test://second/third?uid=233");
 ```
 ### Bundle、Uri参数注入（支持单独使用）
 Router.inject(this)方法可以`单独使用`，可以实现注入Bundle、Uri的参数，由于Uri的参数是String类型，所以该框架还支持把String格式的类型转换为目标类型。目前该方法支持double、float、int、boolean、String数据类型。
@@ -74,11 +74,11 @@ intent.putExtra("uid", "233");
 startActivity(intent);
 // Uri
 Intent intent = new Intent(this, SecondActivity.class);
-intent.setData(Uri.parse("joyrun://second?uid=233"));
+intent.setData(Uri.parse("test://second?uid=233"));
 startActivity(intent);
 // Bundle、Uri
 Intent intent = new Intent(this, SecondActivity.class);
-intent.setData(Uri.parse("joyrun://second?uid=233"));
+intent.setData(Uri.parse("test://second?uid=233"));
 intent.putExtra("name", "Wiki");
 startActivity(intent);
 ```
@@ -108,17 +108,17 @@ public class SecondActivity extends Activity {
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
-        <data android:scheme="joyrun" />
+        <data android:scheme="test" />
     </intent-filter>
 </activity>
 ```
 ```java
 // Java代码调用
-startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("joyrun://second?uid=233&name=Wiki")));
+startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("test://second?uid=233&name=Wiki")));
 ```
 ```html
 // HTML方式，系统浏览器（不支持微信）
-<a href="joyrun://second?uid=233&name=Wiki">打开JoyrunApp的SecondActivity</a>
+<a href="test://second?uid=233&name=Wiki">打开JoyrunApp的SecondActivity</a>
 ```
 
 ### 支持HTTP协议
@@ -134,7 +134,7 @@ startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("joyrun://second?uid=233&
 ```
 如果支持HTTP协议，那么URL的结构就要做些修改
 ```
-// joyrun://second?uid=233
+// test://second?uid=233
 // =>
 http://www.thejoyrun.com/second?uid=233
 ```
@@ -168,7 +168,7 @@ dependencies {
 建议在Application进行初始化
 ```java
 // 必填，填写独特的scheme，避免和其它APP重复
-Router.init("joyrun");
+Router.init("test");
 // 可选，如果需要支持HTTP协议就需要填写
 Router.setHttpHost("www.thejoyrun.com");
 // 可选，手工注册Activity
@@ -182,7 +182,7 @@ Router.register(new RouterInitializer() {
 // 可选，针对自己的业务做调整
 Router.setFilter(new Filter() {
     public String doFilter(String url) {
-    	//return url.replace("joyrun://www.thejoyrun.com/","joyrun://");
+    	//return url.replace("test://www.thejoyrun.com/","test://");
         return url;
     }
 });
@@ -201,7 +201,7 @@ Router.setFilter(new Filter() {
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
-        <data android:scheme="joyrun" />
+        <data android:scheme="test" />
     </intent-filter>
 </activity>
 ```
@@ -209,7 +209,7 @@ Router.setFilter(new Filter() {
 #### 多对一映射
 一个Activity支持配置多个路径，也支持完整的URL配置
 ```java
-@RouterActivity({"second", "second2", "other2://www.thejoyrun.com/second", "joyrun://www.thejoyrun.com/second"})
+@RouterActivity({"second", "second2", "other2://www.thejoyrun.com/second", "test://www.thejoyrun.com/second"})
 public class SecondActivity extends Activity {}
 ```
 #### 手工注册Activity
@@ -228,7 +228,7 @@ Router.register(new RouterInitializer() {
 ```
 Router.setFilter(new Filter() {
     public String doFilter(String url) {
-    	//return url.replace("joyrun://www.thejoyrun.com/","joyrun://");
+    	//return url.replace("test://www.thejoyrun.com/","test://");
         return url;
     }
 });
@@ -244,7 +244,7 @@ apt {
 ```
 `SomeUniqueModuleName`改成这个module专属的名称，然后在主项目初始化的时候添加：
 ```
-Router.init("joyrun");
+Router.init("test");
 Router.register(new SomeUniqueModuleNameAptRouterInitializer());
 ```
 Module的Activity的URL构造器，中心类名就变成了`SomeUniqueModuleNameRouterHelper`
