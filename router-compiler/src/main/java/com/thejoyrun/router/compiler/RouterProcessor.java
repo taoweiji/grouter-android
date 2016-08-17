@@ -40,7 +40,11 @@ public class RouterProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-        System.out.println("RouterProcessor");
+//        System.out.println("handle RouterProcessor"+annotations.size());
+        if (annotations.size() == 0){
+            return false;
+        }
+
         Set<? extends Element> elements = roundEnv.getElementsAnnotatedWith(RouterActivity.class);
         ClassName activityRouteTableInitializer = ClassName.get("com.thejoyrun.router", "RouterInitializer");
         TypeSpec.Builder typeSpec = TypeSpec.classBuilder(targetModuleName + "AptRouterInitializer")
@@ -52,7 +56,7 @@ public class RouterProcessor extends AbstractProcessor {
         List<? extends Element> members = elementUtils.getAllMembers(activityRouteTableInitializertypeElement);
         MethodSpec.Builder bindViewMethodSpecBuilder = null;
         for (Element element : members) {
-            System.out.println(element.getSimpleName());
+//            System.out.println(element.getSimpleName());
             if ("init".equals(element.getSimpleName().toString())) {
                 bindViewMethodSpecBuilder = MethodSpec.overriding((ExecutableElement) element);
                 break;
@@ -85,12 +89,6 @@ public class RouterProcessor extends AbstractProcessor {
                 .build();
         JavaFile javaFileRouterHelper = JavaFile.builder("com.thejoyrun.router", typeSpecRouterHelper).build();
 
-        try {
-            javaFileRouterHelper.writeTo(processingEnv.getFiler());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
 
         JavaFile javaFile = JavaFile.builder("com.thejoyrun.router", typeSpec.addMethod(bindViewMethodSpecBuilder.build()).build()).build();
         try {
@@ -98,7 +96,12 @@ public class RouterProcessor extends AbstractProcessor {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return true;
+        try {
+            javaFileRouterHelper.writeTo(processingEnv.getFiler());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     //TODO 支持在gradle关闭该功能
@@ -152,7 +155,6 @@ public class RouterProcessor extends AbstractProcessor {
         elementUtils = processingEnv.getElementUtils();
         Map<String, String> map = processingEnv.getOptions();
         Set<String> keys = map.keySet();
-        System.out.println("测试");
         for (String key : keys){
             if ("targetModuleName".equals(key)){
                 this.targetModuleName = map.get(key);
