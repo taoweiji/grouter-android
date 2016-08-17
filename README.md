@@ -160,8 +160,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
-    compile 'com.github.joyrun.ActivityRouter:router:0.5.1'
-    apt 'com.github.joyrun.ActivityRouter:router-compiler:0.5.1'
+    compile 'com.github.joyrun.ActivityRouter:router:0.5.2'
+    apt 'com.github.joyrun.ActivityRouter:router-compiler:0.5.2'
 }
 ```
 ### 初始化
@@ -245,7 +245,7 @@ apt {
 `SomeUniqueModuleName`改成这个module专属的名称，然后在主项目初始化的时候添加：
 ```
 Router.init("test");
-Router.register(new SomeUniqueModuleNameAptRouterInitializer());
+Router.register(new SomeUniqueModuleNameRouterInitializer());
 ```
 Module的Activity的URL构造器，中心类名就变成了`SomeUniqueModuleNameRouterHelper`
 

@@ -41,16 +41,16 @@ public class RouterProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
 //        System.out.println("handle RouterProcessor"+annotations.size());
-        if (annotations.size() == 0){
+        if (annotations.size() == 0) {
             return false;
         }
 
         Set<? extends Element> elements = roundEnv.getElementsAnnotatedWith(RouterActivity.class);
         ClassName activityRouteTableInitializer = ClassName.get("com.thejoyrun.router", "RouterInitializer");
-        TypeSpec.Builder typeSpec = TypeSpec.classBuilder(targetModuleName + "AptRouterInitializer")
+        TypeSpec.Builder typeSpec = TypeSpec.classBuilder((targetModuleName.length() == 0 ? "Apt" : targetModuleName) + "RouterInitializer")
                 .addSuperinterface(activityRouteTableInitializer)
                 .addModifiers(Modifier.PUBLIC)
-                .addStaticBlock(CodeBlock.of(String.format("Router.register(new %sAptRouterInitializer());",targetModuleName)));
+                .addStaticBlock(CodeBlock.of(String.format("Router.register(new %sRouterInitializer());", (targetModuleName.length() == 0 ? "Apt" : targetModuleName))));
 
         TypeElement activityRouteTableInitializertypeElement = elementUtils.getTypeElement(activityRouteTableInitializer.toString());
         List<? extends Element> members = elementUtils.getAllMembers(activityRouteTableInitializertypeElement);
@@ -74,16 +74,16 @@ public class RouterProcessor extends AbstractProcessor {
             for (String key : routerActivity.value()) {
                 bindViewMethodSpecBuilder.addStatement("arg0.put($S, $T.class)", key, typeElement.asType());
             }
-            ClassName className = buildActivityHelper(routerActivity.value()[0],activityHelperClassName, (TypeElement) element);
+            ClassName className = buildActivityHelper(routerActivity.value()[0], activityHelperClassName, (TypeElement) element);
 
             MethodSpec methodSpec = MethodSpec.methodBuilder("get" + className.simpleName())
-                    .addStatement("return new $T()",className)
+                    .addStatement("return new $T()", className)
                     .returns(className)
-                    .addModifiers(Modifier.PUBLIC,Modifier.STATIC)
+                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                     .build();
             methodSpecs.add(methodSpec);
         }
-        TypeSpec typeSpecRouterHelper = TypeSpec.classBuilder(targetModuleName+"RouterHelper")
+        TypeSpec typeSpecRouterHelper = TypeSpec.classBuilder(targetModuleName + "RouterHelper")
                 .addModifiers(Modifier.PUBLIC)
                 .addMethods(methodSpecs)
                 .build();
@@ -105,18 +105,18 @@ public class RouterProcessor extends AbstractProcessor {
     }
 
     //TODO 支持在gradle关闭该功能
-    private ClassName buildActivityHelper(String routerActivityName,ClassName activityHelperClassName, TypeElement typeElement) {
+    private ClassName buildActivityHelper(String routerActivityName, ClassName activityHelperClassName, TypeElement typeElement) {
         List<? extends Element> members = elementUtils.getAllMembers(typeElement);
         List<MethodSpec> methodSpecs = new ArrayList<>();
-        ClassName className = ClassName.get("com.thejoyrun.router",typeElement.getSimpleName() + "Helper");
+        ClassName className = ClassName.get("com.thejoyrun.router", typeElement.getSimpleName() + "Helper");
         for (Element element : members) {
             RouterField routerField = element.getAnnotation(RouterField.class);
             if (routerField == null) {
                 continue;
             }
             String name = element.getSimpleName().toString();
-            if (name.length() >= 2 && name.charAt(0) == 'm' && Character.isUpperCase(name.charAt(1))){
-                name = name.substring(1,2).toLowerCase() + name.substring(2);
+            if (name.length() >= 2 && name.charAt(0) == 'm' && Character.isUpperCase(name.charAt(1))) {
+                name = name.substring(1, 2).toLowerCase() + name.substring(2);
             }
             String upperName = name.substring(0, 1).toUpperCase() + name.substring(1);
             MethodSpec methodSpec = MethodSpec.methodBuilder("with" + upperName)
@@ -129,7 +129,7 @@ public class RouterProcessor extends AbstractProcessor {
             methodSpecs.add(methodSpec);
         }
         MethodSpec methodSpec = MethodSpec.constructorBuilder()
-                .addStatement("super($S)",routerActivityName)
+                .addStatement("super($S)", routerActivityName)
                 .addModifiers(Modifier.PUBLIC)
                 .build();
 
@@ -155,11 +155,11 @@ public class RouterProcessor extends AbstractProcessor {
         elementUtils = processingEnv.getElementUtils();
         Map<String, String> map = processingEnv.getOptions();
         Set<String> keys = map.keySet();
-        for (String key : keys){
-            if ("targetModuleName".equals(key)){
+        for (String key : keys) {
+            if ("targetModuleName".equals(key)) {
                 this.targetModuleName = map.get(key);
             }
-            System.out.println(key+" = " + map.get(key));
+            System.out.println(key + " = " + map.get(key));
         }
     }
 

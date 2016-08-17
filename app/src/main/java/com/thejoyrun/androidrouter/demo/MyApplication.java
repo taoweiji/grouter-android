@@ -3,7 +3,7 @@ package com.thejoyrun.androidrouter.demo;
 import android.app.Activity;
 import android.app.Application;
 
-import com.thejoyrun.router.OtherAptRouterInitializer;
+import com.thejoyrun.router.OtherRouterInitializer;
 import com.thejoyrun.router.Router;
 import com.thejoyrun.router.RouterInitializer;
 
@@ -25,7 +25,7 @@ public class MyApplication extends Application {
                 router.put("other://www.thejoyrun.com/second", SecondActivity.class);
             }
         });
-        Router.register(new OtherAptRouterInitializer());
+        Router.register(new OtherRouterInitializer());
 //        Router.setFilter(new Filter() {
 //            @Override
 //            public String doFilter(String url) {
