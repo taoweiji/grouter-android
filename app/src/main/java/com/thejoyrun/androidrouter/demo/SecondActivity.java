@@ -1,7 +1,7 @@
 package com.thejoyrun.androidrouter.demo;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.TextView;
 
 import com.thejoyrun.router.Router;
 import com.thejoyrun.router.RouterActivity;
@@ -36,12 +36,14 @@ public class SecondActivity extends BaseActivity {
         setContentView(R.layout.activity_second);
         long time = System.currentTimeMillis();
         Router.inject(this);
-        Log.e("解析耗时", String.valueOf(System.currentTimeMillis() - time));
-        Log.e("uid", String.valueOf(uid));
-        Log.e("age", String.valueOf(age));
-        Log.e("name", String.valueOf(name));
-        Log.e("man", String.valueOf(man));
-        Log.e("manger", String.valueOf(manger));
-        Log.e("formActivity", String.valueOf(formActivity));
+        StringBuilder builder = new StringBuilder();
+        builder.append("uid:" + String.valueOf(uid)).append('\n');
+        builder.append("age:" + String.valueOf(age)).append('\n');
+        builder.append("name:" + String.valueOf(name)).append('\n');
+        builder.append("man:" + String.valueOf(man)).append('\n');
+        builder.append("manger:" + String.valueOf(manger)).append('\n');
+        builder.append("formActivity:" + String.valueOf(formActivity)).append('\n');
+        TextView textView = (TextView) findViewById(R.id.text);
+        textView.setText(builder.toString());
     }
 }
