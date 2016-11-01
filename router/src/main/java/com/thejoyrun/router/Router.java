@@ -52,7 +52,7 @@ public class Router {
             field.setAccessible(true);
             String[] names = annotation.value();
             try {
-                for (String name : names){
+                for (String name : names) {
                     if (!bundle.containsKey(name)) {
                         continue;
                     }
@@ -91,8 +91,8 @@ public class Router {
         if (activity.getIntent().getData() != null) {
             String url = activity.getIntent().getDataString();
             RouterActivity routerActivity = (RouterActivity) clazz.getAnnotation(RouterActivity.class);
-            if (routerActivity != null){
-                for (String path : routerActivity.value()){
+            if (routerActivity != null) {
+                for (String path : routerActivity.value()) {
                     if (url.contains(path + "/")) {
                         url = url.replace(path + "/", "");
                         Router.startActivity(activity, url);
@@ -111,7 +111,11 @@ public class Router {
     public static boolean startActivity(Context context, String url) {
         if (sFilter != null) {
             url = sFilter.doFilter(url);
+            if (sFilter.start(context, url)) {
+                return true;
+            }
         }
+
         if (TextUtils.isEmpty(url)) {
             return false;
         }
@@ -140,7 +144,7 @@ public class Router {
             key = url;
         }
         Class<? extends Activity> clazz = sRouter.get(key);
-        if (clazz != null){
+        if (clazz != null) {
             return clazz;
         }
         if (sScheme.equals(uri.getScheme())) {
@@ -153,6 +157,9 @@ public class Router {
     public static boolean startActivityForResult(Activity activity, String url, int requestCode) {
         if (sFilter != null) {
             url = sFilter.doFilter(url);
+            if (sFilter.startActivityForResult(activity,url, requestCode)) {
+                return true;
+            }
         }
         if (TextUtils.isEmpty(url)) {
             return false;
@@ -169,9 +176,35 @@ public class Router {
         }
         return false;
     }
+
     public static boolean startActivityForResult(Fragment fragment, String url, int requestCode) {
         if (sFilter != null) {
             url = sFilter.doFilter(url);
+            if (sFilter.startActivityForResult(fragment,url, requestCode)) {
+                return true;
+            }
+        }
+        if (TextUtils.isEmpty(url)) {
+            return false;
+        }
+        Uri uri = Uri.parse(url);
+        Class clazz = getActivityClass(url, uri);
+        if (clazz != null) {
+            Intent intent = new Intent(fragment.getActivity(), clazz);
+            intent.setData(uri);
+            fragment.startActivityForResult(intent, requestCode);
+            return true;
+        } else {
+            new Throwable(url + "can not startActivity").printStackTrace();
+        }
+        return false;
+    }
+    public static boolean startActivityForResult(android.support.v4.app.Fragment fragment, String url, int requestCode) {
+        if (sFilter != null) {
+            url = sFilter.doFilter(url);
+            if (sFilter.startActivityForResult(fragment,url, requestCode)) {
+                return true;
+            }
         }
         if (TextUtils.isEmpty(url)) {
             return false;
