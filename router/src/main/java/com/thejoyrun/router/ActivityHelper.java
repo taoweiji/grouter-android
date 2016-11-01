@@ -51,6 +51,9 @@ public class ActivityHelper {
     public void startForResult(Fragment fragment, int requestCode) {
         Router.startActivityForResult(fragment, getUrl(), requestCode);
     }
+    public void startForResult(android.support.v4.app.Fragment fragment, int requestCode) {
+        Router.startActivityForResult(fragment, getUrl(), requestCode);
+    }
 
 
     public String put(String key, String value) {
