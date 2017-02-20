@@ -25,12 +25,16 @@ public class ActivityHelper {
         Set<String> keys = params.keySet();
         int i = 0;
         for (String key : keys) {
+            String value = params.get(key);
+            if (value == null){
+                continue;
+            }
             if (i == 0) {
                 builder.append('?');
             }
             try {
-                builder.append(key).append('=').append(URLEncoder.encode(params.get(key),"UTF-8"));
-            } catch (UnsupportedEncodingException e) {
+                builder.append(key).append('=').append(URLEncoder.encode(value,"UTF-8"));
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             if (i < (keys.size() - 1)) {
