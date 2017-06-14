@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '25.0.0'
+    compileSdkVersion 25
+    buildToolsVersion '25.0.2'
 
     defaultConfig {
         applicationId "com.thejoyrun.androidrouter.demo"
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
     }
@@ -19,20 +19,11 @@ android {
         }
     }
 }
-buildscript {
-    repositories {
-        maven {
-            url uri('../repo')
-        }
-    }
-    dependencies {
-        classpath group: 'net.avenwu.gradle', name: 'plugin',version: '1.0-SNAPSHOT'
-    }
-}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:appcompat-v7:25.2.0'
     compile project(':router')
     apt project(':router-compiler')
     compile project(':other_module')
@@ -44,17 +35,26 @@ dependencies {
 //        targetModuleName 'App'
 //    }
 //}
-
+buildscript {
+    repositories {
+        maven {
+            url uri('../repo')
+        }
+    }
+//    dependencies {
+//        classpath group: 'net.avenwu.gradle', name: 'plugin',version: '1.0-SNAPSHOT'
+//    }
+}
 //dependencies {
 //    classpath group: 'net.avenwu.gradle', name: 'plugin',version: '1.0-SNAPSHOT'
 //}
-apply plugin: 'net.avenwu.gradle.HelloPlugin'
-
-author {
-    name = "Chaobin Wu"
-    email = "wuchaobin@58ganji.com"
-}
-
-task dojob(type: net.avenwu.gradle.DoJob) {
-    value = 'com.thejoyrun.androidrouter.democ'
-}
+//apply plugin: 'net.avenwu.gradle.HelloPlugin'
+//
+//author {
+//    name = "Chaobin Wu"
+//    email = "wuchaobin@58ganji.com"
+//}
+//
+//task dojob(type: net.avenwu.gradle.DoJob) {
+//    value = 'com.thejoyrun.androidrouter.democ'
+//}
