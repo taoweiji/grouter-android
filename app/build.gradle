@@ -3,7 +3,7 @@ apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '23.0.2'
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "com.thejoyrun.androidrouter.demo"
@@ -19,11 +19,35 @@ android {
         }
     }
 }
-
+buildscript {
+    repositories {
+        maven {
+            url uri('../repo')
+        }
+    }
+    dependencies {
+        classpath group: 'net.avenwu.gradle', name: 'plugin',version: '1.0-SNAPSHOT'
+    }
+}
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile project(':router')
     apt project(':router-compiler')
+}
+
+
+//dependencies {
+//    classpath group: 'net.avenwu.gradle', name: 'plugin',version: '1.0-SNAPSHOT'
+//}
+apply plugin: 'net.avenwu.gradle.HelloPlugin'
+
+author {
+    name = "Chaobin Wu"
+    email = "wuchaobin@58ganji.com"
+}
+
+task dojob(type: net.avenwu.gradle.DoJob) {
+    value = 'com.thejoyrun.androidrouter.democ'
 }
