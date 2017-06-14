@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
  */
 @Inherited
 @Target(ElementType.FIELD)
-@Retention(RetentionPolicy.CLASS)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface RouterField {
-    String value();
+    String[] value();
 }

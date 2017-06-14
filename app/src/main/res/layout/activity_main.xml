@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Test:Routers.inject()" />
+        android:text="Test:Router.inject()" />
 
     <Button
         android:id="@+id/button1"
@@ -40,13 +40,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Test:Routers.open()" />
+        android:text="Test:Router.open()" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Routers.open()"
+        android:text="Router.open()"
         android:textAllCaps="false" />
 
     <Button
@@ -68,6 +68,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ActivityHandler"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Other Module"
         android:textAllCaps="false" />
 
 </LinearLayout>

@@ -9,7 +9,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/plugin" />
+            <option value="$PROJECT_DIR$/base" />
+            <option value="$PROJECT_DIR$/other_module" />
+              <option value="$PROJECT_DIR$/plugin" />
             <option value="$PROJECT_DIR$/router" />
             <option value="$PROJECT_DIR$/router-annotation" />
             <option value="$PROJECT_DIR$/router-compiler" />

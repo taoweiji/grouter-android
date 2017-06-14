@@ -1,8 +1,11 @@
 package com.thejoyrun.router;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -18,14 +21,22 @@ public class ActivityHelper {
 
     public String getUrl() {
         StringBuilder builder = new StringBuilder();
-        builder.append(Routers.getScheme()).append("://").append(host);
+        builder.append(Router.getScheme()).append("://").append(host);
         Set<String> keys = params.keySet();
         int i = 0;
         for (String key : keys) {
+            String value = params.get(key);
+            if (value == null){
+                continue;
+            }
             if (i == 0) {
                 builder.append('?');
             }
-            builder.append(key).append('=').append(params.get(key));
+            try {
+                builder.append(key).append('=').append(URLEncoder.encode(value,"UTF-8"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             if (i < (keys.size() - 1)) {
                 builder.append('&');
             }
@@ -35,12 +46,19 @@ public class ActivityHelper {
     }
 
     public void start(Context context) {
-        Routers.startActivity(context, getUrl());
+        Router.startActivity(context, getUrl());
     }
 
     public void startForResult(Activity activity, int requestCode) {
-        Routers.startActivityForResult(activity, getUrl(), requestCode);
+        Router.startActivityForResult(activity, getUrl(), requestCode);
     }
+    public void startForResult(Fragment fragment, int requestCode) {
+        Router.startActivityForResult(fragment, getUrl(), requestCode);
+    }
+    public void startForResult(android.support.v4.app.Fragment fragment, int requestCode) {
+        Router.startActivityForResult(fragment, getUrl(), requestCode);
+    }
+
 
     public String put(String key, String value) {
         return params.put(key, value);

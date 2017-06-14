@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * Created by Wiki on 16/7/28.
  */
 @Target(ElementType.TYPE)
-@Retention(RetentionPolicy.CLASS)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface RouterActivity {
     String[] value();
 //    String[] longExtra() default "";

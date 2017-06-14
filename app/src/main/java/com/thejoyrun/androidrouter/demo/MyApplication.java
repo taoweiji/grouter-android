@@ -3,8 +3,9 @@ package com.thejoyrun.androidrouter.demo;
 import android.app.Activity;
 import android.app.Application;
 
-import com.thejoyrun.router.ActivityRouteTableInitializer;
-import com.thejoyrun.router.Routers;
+import com.thejoyrun.router.OtherRouterInitializer;
+import com.thejoyrun.router.Router;
+import com.thejoyrun.router.RouterInitializer;
 
 import java.util.Map;
 
@@ -15,19 +16,20 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Routers.init("joyrun");
-        Routers.setHttpHost("www.thejoyrun.com");
-        Routers.register(new ActivityRouteTableInitializer() {
+        Router.init("test");
+        Router.setHttpHost("www.thejoyrun.com");
+        Router.register(new RouterInitializer() {
             @Override
-            public void initRouterTable(Map<String, Class<? extends Activity>> router) {
+            public void init(Map<String, Class<? extends Activity>> router) {
                 router.put("second2", SecondActivity.class);
                 router.put("other://www.thejoyrun.com/second", SecondActivity.class);
             }
         });
-//        Routers.setFilter(new Filter() {
+        Router.register(new OtherRouterInitializer());
+//        Router.setFilter(new Filter() {
 //            @Override
 //            public String doFilter(String url) {
-//                return url.replace("joyrun://www.thejoyrun.com/","joyrun://");
+//                return url.replace("test://www.thejoyrun.com/","test://");
 //            }
 //        });
     }

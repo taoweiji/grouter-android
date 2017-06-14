@@ -25,8 +25,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:host="www.thejoyrun.com" android:scheme="http" />
-                <data android:scheme="joyrun" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="test" />
+            </intent-filter>
+
         </activity>
         <activity
             android:name=".ThirdActivity"

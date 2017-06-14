@@ -35,8 +35,15 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile project(':router')
     apt project(':router-compiler')
+    compile project(':other_module')
+    compile project(':base')
 }
 
+//apt {
+//    arguments {
+//        targetModuleName 'App'
+//    }
+//}
 
 //dependencies {
 //    classpath group: 'net.avenwu.gradle', name: 'plugin',version: '1.0-SNAPSHOT'
