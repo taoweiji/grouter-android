@@ -1,17 +1,23 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
         applicationId "com.thejoyrun.androidrouter.demo"
-        minSdkVersion 14
-        targetSdkVersion 25
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [targetModuleName: 'App']
+            }
+        }
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -21,40 +27,13 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile project(':router')
-    apt project(':router-compiler')
-    compile project(':other_module')
-    compile project(':base')
-}
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation rootProject.ext.dependencies.appcompatV7
+    implementation project(':router')
+    annotationProcessor project(':router-compiler')
 
-//apt {
-//    arguments {
-//        targetModuleName 'App'
-//    }
-//}
-buildscript {
-    repositories {
-        maven {
-            url uri('../repo')
-        }
-    }
-//    dependencies {
-//        classpath group: 'net.avenwu.gradle', name: 'plugin',version: '1.0-SNAPSHOT'
-//    }
+    implementation project(':other_module')
+    implementation project(':base')
+
+    testImplementation 'junit:junit:4.12'
 }
-//dependencies {
-//    classpath group: 'net.avenwu.gradle', name: 'plugin',version: '1.0-SNAPSHOT'
-//}
-//apply plugin: 'net.avenwu.gradle.HelloPlugin'
-//
-//author {
-//    name = "Chaobin Wu"
-//    email = "wuchaobin@58ganji.com"
-//}
-//
-//task dojob(type: net.avenwu.gradle.DoJob) {
-//    value = 'com.thejoyrun.androidrouter.democ'
-//}

@@ -18,13 +18,14 @@ uploadArchives {
 }
 sourceSets {
     main {
+        // compile everything in src/ with groovy
         groovy {
-            srcDirs = [
-                    'src/main/groovy',
-                    'src/main/java'
-            ]
-        }  // compile everything in src/ with groovy
-        java { srcDirs = []}    // no source dirs for the java compiler
+            srcDirs = ['src/main/groovy', 'src/main/java']
+        }
 
+        // no source dirs for the java compiler
+        java {
+            srcDirs = []
+        }
     }
 }
