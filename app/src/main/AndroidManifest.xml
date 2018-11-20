@@ -36,7 +36,10 @@
         </activity>
         <activity
             android:name=".ThirdActivity"
-            android:label="ThirdActivity"></activity>
+            android:label="ThirdActivity"/>
+        <activity
+            android:name=".KotlinActivity"
+            android:label="KotlinActivity"/>
     </application>
 
 </manifest>

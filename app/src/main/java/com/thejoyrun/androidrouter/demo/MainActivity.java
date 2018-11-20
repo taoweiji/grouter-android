@@ -22,6 +22,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.button6).setOnClickListener(this);
         findViewById(R.id.button7).setOnClickListener(this);
         findViewById(R.id.button8).setOnClickListener(this);
+        findViewById(R.id.button9).setOnClickListener(this);
     }
 
     @Override
@@ -59,6 +60,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             RouterHelper.getSecondActivityHelper().withUid(24).withName("http://php.test.thejoyrun.com/test/test3.php?joyrun_extra=test%3A%2F%2Fwww.thejoyrun.com%2Fhot_topic%3Ftopic_name%3D跑步不说谎").start(this);
         }else if (v.getId() == R.id.button8) {
             Router.startActivity(this, "test://other?uid=233&age=24");
+        }else if (v.getId() == R.id.button9) {
+            Router.startActivity(this, "test://fourth?uid=233&age=24&name=Wiki&manger=true");
         }
     }
 }

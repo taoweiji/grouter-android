@@ -199,7 +199,7 @@ public class Router {
         }
         return false;
     }
-    public static boolean startActivityForResult(android.support.v4.app.Fragment fragment, String url, int requestCode) {
+    public static boolean startActivityForResult(androidx.fragment.app.Fragment fragment, String url, int requestCode) {
         if (sFilter != null) {
             url = sFilter.doFilter(url);
             if (sFilter.startActivityForResult(fragment,url, requestCode)) {
