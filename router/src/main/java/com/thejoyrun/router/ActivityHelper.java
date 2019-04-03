@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,7 +54,7 @@ public class ActivityHelper {
     public void startForResult(Fragment fragment, int requestCode) {
         Router.startActivityForResult(fragment, getUrl(), requestCode);
     }
-    public void startForResult(android.support.v4.app.Fragment fragment, int requestCode) {
+    public void startForResult(androidx.fragment.app.Fragment fragment, int requestCode) {
         Router.startActivityForResult(fragment, getUrl(), requestCode);
     }
 

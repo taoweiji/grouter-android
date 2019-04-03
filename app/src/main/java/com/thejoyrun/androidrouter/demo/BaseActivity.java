@@ -2,9 +2,8 @@ package com.thejoyrun.androidrouter.demo;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-
 import com.thejoyrun.router.RouterField;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by Wiki on 16/7/30.
