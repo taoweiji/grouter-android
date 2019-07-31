@@ -83,6 +83,8 @@ public class Router {
                         field.set(activity, bundle.getInt(name, defaultValue != null ? (Integer) defaultValue : 0));
                     } else if (field.getGenericType() == Boolean.class) {
                         field.set(activity, bundle.getBoolean(name, defaultValue != null ? (Boolean) defaultValue : false));
+                    }else if (field.getGenericType() == Long.class) {
+                        field.set(activity, bundle.getLong(name, defaultValue != null ? (Long) defaultValue : 0));
                     }
                 }
             } catch (IllegalAccessException e) {
