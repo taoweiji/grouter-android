@@ -68,6 +68,9 @@ public class Router {
                     } else if (type.equals("boolean")) {
                         field.set(activity, bundle.getBoolean(name, field.getBoolean(activity)));
                         continue;
+                    } else if (type.equals("long")) {
+                        field.set(activity, bundle.getLong(name, field.getLong(activity)));
+                        continue;
                     }
                     Object defaultValue = field.get(activity);
                     if (field.getGenericType() == String.class) {
