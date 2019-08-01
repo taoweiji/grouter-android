@@ -148,9 +148,6 @@ allprojects {
 		...
 		maven { url "https://jitpack.io" }
 	}
-	dependencies {
-        classpath 'com.android.tools.build:gradle:1.5.0'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
 ```
