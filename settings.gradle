@@ -1,1 +1,1 @@
-include ':app', ':router', ':router-compiler', ':router-annotation', ':other_module'
+include ':app', ':router', ':router-compiler', ':router-annotation', ':other_module', ':router-androidx'

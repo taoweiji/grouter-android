@@ -204,6 +204,28 @@ public class Router {
         }
         return false;
     }
+    public static boolean startActivityForResult(androidx.fragment.app.Fragment fragment, String url, int requestCode) {
+        if (sFilter != null) {
+            url = sFilter.doFilter(url);
+            if (sFilter.startActivityForResult(fragment,url, requestCode)) {
+                return true;
+            }
+        }
+        if (TextUtils.isEmpty(url)) {
+            return false;
+        }
+        Uri uri = Uri.parse(url);
+        Class clazz = getActivityClass(url, uri);
+        if (clazz != null) {
+            Intent intent = new Intent(fragment.getActivity(), clazz);
+            intent.setData(uri);
+            fragment.startActivityForResult(intent, requestCode);
+            return true;
+        } else {
+            new Throwable(url + "can not startActivity").printStackTrace();
+        }
+        return false;
+    }
 
     public static String getHttpHost() {
         return sHttpHost;

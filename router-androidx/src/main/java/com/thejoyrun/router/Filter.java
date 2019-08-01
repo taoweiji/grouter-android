@@ -16,4 +16,5 @@ public interface Filter {
 
     boolean startActivityForResult(Fragment fragment, String url, int requestCode);
 
+    boolean startActivityForResult(androidx.fragment.app.Fragment fragment, String url, int requestCode);
 }

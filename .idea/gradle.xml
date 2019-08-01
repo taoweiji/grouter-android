@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/other_module" />
             <option value="$PROJECT_DIR$/router" />
+            <option value="$PROJECT_DIR$/router-androidx" />
             <option value="$PROJECT_DIR$/router-annotation" />
             <option value="$PROJECT_DIR$/router-compiler" />
           </set>
