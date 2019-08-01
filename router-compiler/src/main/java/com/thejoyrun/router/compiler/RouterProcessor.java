@@ -163,8 +163,8 @@ public class RouterProcessor extends AbstractProcessor {
         }
     }
 
-//    @Override
-//    public SourceVersion getSupportedSourceVersion() {
-//        return SourceVersion.RELEASE_7;
-//    }
+    @Override
+    public SourceVersion getSupportedSourceVersion() {
+        return SourceVersion.RELEASE_8;
+    }
 }

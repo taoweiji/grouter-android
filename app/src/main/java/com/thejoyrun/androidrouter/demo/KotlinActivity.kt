@@ -1,9 +1,10 @@
 package com.thejoyrun.androidrouter.demo
 
+import android.app.Activity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import com.thejoyrun.router.RouterActivity
 import com.thejoyrun.router.routerBooleanArgOr
 import com.thejoyrun.router.routerIntArgOr
@@ -22,11 +23,11 @@ class KotlinActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_third)
         val builder = StringBuilder()
-        builder.append("uid:" + uid.toString()).append('\n')
-        builder.append("age:" + age.toString()).append('\n')
-        builder.append("name:" + name.toString()).append('\n')
-        builder.append("man:" + man.toString()).append('\n')
-        builder.append("manger:" + manger.toString()).append('\n')
+        builder.append("uid:$uid").append('\n')
+        builder.append("age:$age").append('\n')
+        builder.append("name:$name").append('\n')
+        builder.append("man:$man").append('\n')
+        builder.append("manger:$manger").append('\n')
         builder.append("formActivity:" + formActivity.toString()).append('\n')
         val textView = findViewById<View>(R.id.text) as TextView
         textView.text = builder.toString()

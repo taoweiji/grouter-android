@@ -157,11 +157,13 @@ allprojects {
 ### 配置app module的build.gradle 
 ```
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
-    compile 'com.github.joyrun.ActivityRouter:router:0.6.2'
-    apt 'com.github.joyrun.ActivityRouter:router-compiler:0.6.2'
+    // support-v4,只需要引入 router 或者 router-androidx 其中一个
+    implementation 'com.github.joyrun.ActivityRouter:router:0.8.2'
+    // androidx support
+    // implementation 'com.github.joyrun.ActivityRouter:router-androidx:0.8.2'
+    annotationProcessor 'com.github.joyrun.ActivityRouter:router-compiler:0.8.2'
 }
 ```
 ### 初始化

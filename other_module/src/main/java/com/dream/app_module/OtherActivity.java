@@ -1,8 +1,9 @@
 package com.dream.app_module;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
 import com.thejoyrun.router.RouterActivity;
-import androidx.appcompat.app.AppCompatActivity;
 
 @RouterActivity("other")
 public class OtherActivity extends AppCompatActivity {

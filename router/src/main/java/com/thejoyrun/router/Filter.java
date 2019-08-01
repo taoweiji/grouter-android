@@ -16,4 +16,6 @@ public interface Filter {
 
     boolean startActivityForResult(Fragment fragment, String url, int requestCode);
 
+    boolean startActivityForResult(android.support.v4.app.Fragment fragment, String url, int requestCode);
+
 }
