@@ -1,0 +1,56 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+
+    implementation gradleApi()
+    implementation localGroovy()
+    // 这里不能使用最新的，由于最新的gradle在maven仓库中无法找到
+    implementation 'com.android.tools.build:gradle:2.3.3'
+    // 这个可以使用最新的
+//    implementation 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.31'
+    // 这两个是用于解析Kotlin语法的工具
+    implementation 'org.jetbrains.kotlin:kotlin-compiler-runner:1.3.31'
+    implementation 'org.jetbrains.kotlin:kotlin-compiler-embeddable:1.3.31'
+    implementation 'de.defmacro:eclipse-astparser:8.1'
+    // 这里是用于解决Java语法
+//    api 'org.eclipse.jdt:org.eclipse.jdt.core:3.18.0'
+//     这个是用于生产Java类的工具
+    implementation 'com.squareup:javapoet:1.10.0'
+    // 这个是辅助工具
+    implementation 'com.alibaba:fastjson:1.1.45.android'
+//    implementation project(':grouter-compiler')
+}
+repositories {
+    jcenter()
+    google()
+    mavenCentral()
+}
+
+
+group = MAVEN_GROUP_ID
+version =MAVEN_PUBLISH_VERSION
+
+// 发布到本地仓库，方便测试
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri('../repo'))
+        }
+    }
+}
+
+apply plugin: 'com.novoda.bintray-release'
+publish {
+    userOrg = MAVEN_USER_ORG
+    groupId = MAVEN_GROUP_ID
+    artifactId = project.name
+    publishVersion = MAVEN_PUBLISH_VERSION
+    desc = MAVEN_DESC
+    website = MAVEN_WEBSITE
+}

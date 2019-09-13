@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+    function navPage(){
+        window.grouter.startPage("grouter://activity/user?name=Wiki&uid=1")
+    }
+    function executeTask(){
+        var user = window.grouter.executeTask("grouter://task/getUser?name=Wiki&uid=1")
+        alert(user)
+    }
+    </script>
+</head>
+<body>
+<button onclick="navPage()">跳转页面</button>
+<button onclick="executeTask()">获取服务数据</button>
+</body>
+</html>

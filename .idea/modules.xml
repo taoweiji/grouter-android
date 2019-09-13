@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/grouter/grouter.iml" filepath="$PROJECT_DIR$/grouter/grouter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/grouter-android.iml" filepath="$PROJECT_DIR$/grouter-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/grouter-androidx/grouter-androidx.iml" filepath="$PROJECT_DIR$/grouter-androidx/grouter-androidx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/grouter-annotation/grouter-annotation.iml" filepath="$PROJECT_DIR$/grouter-annotation/grouter-annotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/grouter-compiler/grouter-compiler.iml" filepath="$PROJECT_DIR$/grouter-compiler/grouter-compiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/grouter-gradle-plugin/grouter-gradle-plugin.iml" filepath="$PROJECT_DIR$/grouter-gradle-plugin/grouter-gradle-plugin.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,10 @@
+include ':grouter',
+        ':grouter-compiler',
+        ':grouter-annotation',
+        ':grouter-gradle-plugin'
+
+//apply from: "example/example.gradle"
+
+//include ':grouter-kotlin', ':grouter-flutter'
+include ':grouter-androidx'
+

@@ -1,0 +1,35 @@
+{
+	"activityModels":[
+		{
+			"description":"",
+			"exported":true,
+			"module":"",
+			"name":"",
+			"params":[],
+			"path":"travel/home",
+			"type":"com.grouter.example.travel.TravelHomeActivity"
+		},
+		{
+			"description":"",
+			"exported":true,
+			"module":"",
+			"name":"",
+			"params":[],
+			"path":"travel/map",
+			"type":"com.grouter.example.travel.TravelMapActivity"
+		},
+		{
+			"description":"",
+			"exported":true,
+			"module":"",
+			"name":"",
+			"params":[],
+			"path":"travel/poi",
+			"type":"com.grouter.example.travel.TravelPoiActivity"
+		}
+	],
+	"componentModels":[],
+	"delegateModels":[],
+	"interceptorModels":[],
+	"taskModels":[]
+}
