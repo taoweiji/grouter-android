@@ -8,16 +8,16 @@ GRouter 兼容拼接参数方式同时，区别于其他组件化方案推出了
 
 ### 特点
 
-1. 支持[AndroidX](#使用教程)、支持 Java 和 Kotlin。
-2. 支持[Flutter](https://github.com/taoweiji/grouter-android/wiki/RouterActivity-详解#支持flutter)、[Hybrid H5](https://github.com/taoweiji/grouter-android/wiki/RouterActivity-详解#hybrid-h5)混合项目，可以通过URL调用原生模块获取服务数据、跳转Activity。
-3. 支持多Module项目、[多工程项目]()；多工程项目支持多scheme。
+1. 支持[AndroidX](https://github.com/taoweiji/grouter-android/wiki#使用教程)、支持 Java 和 Kotlin。
+2. 支持[Flutter](https://github.com/taoweiji/grouter-android/wiki/支持多工程项目&混合工程#flutter)、[Hybrid H5](https://github.com/taoweiji/grouter-android/wiki/支持多工程项目&混合工程#hybrid-h5)混合项目，可以通过URL调用原生模块获取服务数据、跳转Activity。
+3. 支持多Module项目、[多工程项目](https://github.com/taoweiji/grouter-android/wiki/支持多工程项目&混合工程)；多工程项目支持多scheme。
 4. Activity 跳转支持设置默认转场动画，支持设置单次转场动画，支持指定 Flag，支持[多级跳转](https://github.com/taoweiji/grouter-android/wiki/RouterActivity-详解#多级跳转)。
-5. Activity、Fragment、Task支持[参数注入]()，无需手动解析参数。
+5. Activity、Fragment、Task支持[参数注入](https://github.com/taoweiji/grouter-android/wiki)，无需手动解析参数。
 6. 提供RouterComponent、RouterTask、RouterDelegate三种强大的组件间调用服务组件。
-7. 支持[生成HTML文档]()和导入RAP，方便查询。
-8. 支持[服务降级]()，支持通过服务降级Mock数据，可以实现[单Module运行调试]()，提高开发效率。
+7. 支持[生成HTML文档](https://github.com/taoweiji/grouter-android/wiki)和导入RAP，方便查询。
+8. 支持[服务降级](https://github.com/taoweiji/grouter-android/wiki/服务降级)，支持通过服务降级Mock数据，可以实现[单Module运行调试]()，提高开发效率。
 9. 各个组件均支持`自动生成构造器`，避免拼接参数容易写错问题。
-10. 提供 [IDEA 插件]()，支持快捷跳转到目标类，支持 Java 和 Kotlin。
+10. 提供 [IDEA 插件](https://github.com/taoweiji/grouter-android/wiki#IDEA 插件)，支持快捷跳转到目标类，支持 Java 和 Kotlin。
 11. 使用Gradle插件注册Module模块，简化配置。
 13. RouterComponent支持获取Fragment。
 13. 支持从外部浏览器和[其它APP打开内部Activity](https://github.com/taoweiji/grouter-android/wiki/RouterActivity-详解#支持外部app浏览器打开内部-activity)。
