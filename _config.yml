@@ -1,0 +1,8 @@
+title: Android的Activity路由框架
+description: 通过注解方式来实现URL打开Activity功能
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-cayman
+
+gems:
+  - jekyll-mentions
