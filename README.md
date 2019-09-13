@@ -15,7 +15,7 @@ GRouter 兼容拼接参数方式同时，区别于其他组件化方案推出了
 5. Activity、Fragment、Task支持[参数注入](https://github.com/taoweiji/grouter-android/wiki)，无需手动解析参数。
 6. 提供RouterComponent、RouterTask、RouterDelegate三种强大的组件间调用服务组件。
 7. 支持[生成HTML文档](https://github.com/taoweiji/grouter-android/wiki)和导入RAP，方便查询。
-8. 支持[服务降级](https://github.com/taoweiji/grouter-android/wiki/服务降级)，支持通过服务降级Mock数据，可以实现[单Module运行调试]()，提高开发效率。
+8. 支持[服务降级](https://github.com/taoweiji/grouter-android/wiki/服务降级)，支持通过服务降级Mock数据，可以实现[单Module运行调试](https://github.com/taoweiji/grouter-android/wiki/RouterComponent-详解#服务降级)，提高开发效率。
 9. 各个组件均支持`自动生成构造器`，避免拼接参数容易写错问题。
 10. 提供 [IDEA 插件](https://github.com/taoweiji/grouter-android/wiki#IDEA 插件)，支持快捷跳转到目标类，支持 Java 和 Kotlin。
 11. 使用Gradle插件注册Module模块，简化配置。
