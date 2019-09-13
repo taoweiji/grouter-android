@@ -88,10 +88,16 @@ GROUTER_ANDROIDX = false
 buildscript {
     repositories {
         jcenter()
-      	maven { url 'https://dl.bintray.com/grouter/maven' }
+      	 maven { url 'https://dl.bintray.com/grouter/maven' }
     }
     dependencies {
         classpath 'com.grouter:grouter-gradle-plugin:1.0.0'
+    }
+}
+allprojects {
+    repositories {
+        jcenter()
+        maven { url 'https://dl.bintray.com/grouter/maven' }
     }
 }
 ```
