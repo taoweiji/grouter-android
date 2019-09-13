@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/taoweiji/grouter-android.svg)](https://jitpack.io/#taoweiji/grouter-android)
+[![Download](https://api.bintray.com/packages/grouter/maven/grouter/images/download.svg)](https://bintray.com/grouter/maven/grouter/_latestVersion)
 
 ## GRouter - 为Android组件化开发而生的路由框架
 
