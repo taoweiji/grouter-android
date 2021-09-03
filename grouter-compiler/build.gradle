@@ -1,0 +1,17 @@
+apply plugin: 'java'
+//apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'maven'
+
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.google.auto.service:auto-service:1.0-rc2'
+    implementation 'com.squareup:javapoet:1.11.1'
+    implementation project(':grouter-annotation')
+    implementation 'com.alibaba:fastjson:1.1.45.android'
+    testImplementation 'junit:junit:4.12'
+}
+
+apply from: '../maven_public.gradle'

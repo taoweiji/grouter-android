@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BaseModule</string>
+    <string name="title_activity_crew">CrewActivity</string>
+</resources>

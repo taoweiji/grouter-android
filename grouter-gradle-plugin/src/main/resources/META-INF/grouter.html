@@ -1,0 +1,313 @@
+<html xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+
+</head>
+<body>
+<div id="app">
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://grouter.gitbook.io/grouter/">GRouter</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+      <ul class="nav navbar-nav">
+		  <li v-bind:class="{ active: type === 'Activity' }"><a href="#Activity" v-on:click="onActivityTabClick">Activity</span></a></li>
+		  <li v-bind:class="{ active: type === 'Component' }"><a href="#Component" v-on:click="onComponentTabClick">Component</a></li>
+		  <li v-bind:class="{ active: type === 'Task' }"><a href="#Task" v-on:click="onTaskTabClick">Task</span></a></li>
+
+        
+        <!-- <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li> -->
+      </ul>
+<!--       <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
+      </form> -->
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+        	<!-- <a href="https://grouter.gitbook.io">Document</a> -->
+
+        	<a class="Header-link" href="https://github.com/taoweiji/grouter" data-hotkey="g d" aria-label="Homepage" data-ga-click="Header, go to dashboard, icon:logo">
+  <svg class="octicon octicon-mark-github v-align-middle" height="20" viewBox="0 0 16 16" version="1.1" width="20" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+</a>
+
+        </li>
+        <!-- <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li> -->
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<!-- <div style="margin-top: 50;padding-left: 50">
+	base url: grouter://grouter/
+</div> -->
+<div class="row" style="margin-top: 100">
+
+<!--     <div class="col-md-2">
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation" class="active"><a href="?module=all">ALL</a></li>
+            <li role="presentation"><a href="?module=app">app</a></li>
+            <li role="presentation"><a href="#">lib.user</a></li>
+            <li role="presentation"><a href="#">lib.crew</a></li>
+        </ul>
+
+    </div> -->
+    <div class="col-md-12">
+    	<table class="table table-striped"  id="app">
+    		<template v-if="type === 'Activity'">
+    		<thead>
+    			<th>module</th>
+    			<th>name</th>
+    			<th>argument</th>
+    			<!-- <th>PARAMS</th> -->
+    			<th>class</th>
+    			<th>exported</th>
+    			<th>description</th>
+    			<th>option</th>
+    		</thead>
+    		<tbody>
+    			<tr v-for="item in activityModels">
+    				<th>{{ item.module }}</th>
+    				<td>{{ item.name }}</td>
+					<td>{{ item.argument }}</td>
+					<!-- <td>{{ activity.params }}</td> -->
+					<td>{{ item.type }}</td>
+					<td>{{ item.exported }}</td>
+					<td>{{ item.description }}</td>
+					<td><button class="btn btn-default" data-toggle="modal" data-target="#myModal">BUILD</button></td>
+    			</tr>
+    		</tbody>
+    		</template>
+    		<template v-else-if="type === 'Component'">
+    		<thead>
+    			<th>module</th>
+    			<th>name</th>
+    			<th>path</th>
+    			<th>protocol</th>
+    			<th>implement</th>
+    			<th>description</th>
+    			
+    		</thead>
+    		<tbody>
+    			<tr v-for="item in componentModels">
+    				<th>{{ item.module }}</th>
+    				<td>{{ item.name }}</td>
+    				<td>{{ item.path }}</td>
+					<td>{{ item.protocol }}</td>
+					<td>{{ item.implement }}</td>
+					<td>{{ item.description }}</td>
+					
+    			</tr>
+    		</tbody>
+
+    		</template>
+    		<template v-else-if="type === 'Task'">
+    		<thead>
+    			<th>module</th>
+    			<th>name</th>
+    			<th>path</th>
+    			<th>params</th>
+    			<th>returns</th>
+    			<th>implement</th>
+    			<th>description</th>
+    			
+    		</thead>
+    		<tbody>
+    			<tr v-for="item in taskModels">
+    				<th>{{ item.module }}</th>
+    				<td>{{ item.name }}</td>
+					<td>{{ item.path }}</td>
+					<td>{{ item.argument }}</td>
+					<td>{{ item.returns }}</td>
+					<td>{{ item.type }}</td>
+					<td>{{ item.description }}</td>
+					
+    			</tr>
+    		</tbody>
+
+    		</template>
+
+
+</table>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">BUILD URL</h4>
+      </div>
+      <div class="modal-body">
+
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">uid ( int ) : 用户ID</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">name ( String ) : 用户昵称</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">age ( Long ) : 年龄</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+
+
+          <div class="form-group">
+            <label for="message-text" class="control-label">URL :</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+        
+
+
+<!-- <div class="row" style="margin-top: 10">
+    <div class="col-md-2">
+        
+
+    </div>
+    <div class="col-md-10"> -->
+
+
+
+
+
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Qr Code</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+ 	<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript">
+    	// 参考美团进行介绍，美团、美团外面、猫眼
+    	var type = window.location.hash.replace("#","")
+    	if (type == '') {
+    		type = 'Activity'
+    	}
+    	// var select = document.getElementById('#'+type)
+    	// if (select != null) {
+    	// 	select.classList.add("active")
+    	// }
+    	var app = new Vue({
+    		methods:{
+    			onActivityTabClick:function(event){
+    				this.type = 'Activity'
+    				// window.location = "#Activity"
+    			},
+    			onComponentTabClick:function(event){
+    				this.type = 'Component'
+    				// window.location = "#Component"
+    			},
+    			onTaskTabClick:function(event){
+    				this.type = 'Task'
+    				// window.location = "#Task"
+    			}
+    		},
+    		el: '#app',
+    		data: {
+    			type : type,
+    			message: 'Hello Vue!',
+    			activityModels:@ACTIVITY_MODELS,
+    			componentModels:@COMPONENT_MODELS,
+    			taskModels:@TASK_MODELS,
+    			delegateModels:@DELEGATE_MODELS,
+    		}
+    	})
+
+    	<!--$(document).ready(function(){-->
+    		<!--updateTab(window.location.hash.replace("#",""));-->
+    		<!--function updateTab(text){-->
+    			<!--// var text = window.location.hash.replace("#","");-->
+    			<!--if (text == "Task") {-->
+    				<!--$("#tab_activity").removeClass("active")-->
+    				<!--$("#tab_component").removeClass("active")-->
+    				<!--$("#tab_task").addClass("active")-->
+    				<!--app.type = 'Task'-->
+    			<!--}else if (text == "Component") {-->
+    				<!--$("#tab_activity").removeClass("active")-->
+    				<!--$("#tab_component").addClass("active")-->
+    				<!--$("#tab_task").removeClass("active")-->
+    				<!--app.type = 'Component'-->
+    			<!--}else{-->
+    				<!--$("#tab_activity").addClass("active")-->
+    				<!--$("#tab_component").removeClass("active")-->
+    				<!--$("#tab_task").removeClass("active")-->
+    				<!--app.type = 'Activity'-->
+    			<!--}-->
+    		<!--}-->
+    		<!--$("#tab_activity").click(function(){-->
+    			<!--updateTab("Activity")-->
+    			<!--// app.type = 'Activity'-->
+    		<!--})-->
+    		<!--$("#tab_component").click(function(){-->
+    			<!--updateTab("Component")-->
+    			<!--// app.type = 'Component'-->
+    		<!--})-->
+    		<!--$("#tab_task").click(function(){-->
+    			<!--updateTab("Task")-->
+    			<!--// app.type = 'Task'-->
+    		<!--})-->
+    		<!---->
+    	<!--});-->
+
+
+    </script>
+
+</body>
+</html>

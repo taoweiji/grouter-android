@@ -1,1 +1,9 @@
-include ':app', ':router', ':router-compiler', ':router-annotation'
+include ':grouter', ':grouter-kotlinextensions',
+        ':grouter-compiler',
+        ':grouter-annotation',
+        ':grouter-gradle-plugin'
+
+apply from: "example/example.gradle"
+
+//include ':grouter-kotlin', ':grouter-flutter'
+

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ActivityRouter</string>
+    <string name="title_activity_component_test">ComponentTestActivity</string>
+</resources>

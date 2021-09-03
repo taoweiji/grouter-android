@@ -1,0 +1,23 @@
+{
+	"activityModels":[
+		{
+			"description":"",
+			"exported":true,
+			"name":"",
+			"params":[
+				{
+					"name":"url",
+					"queryName":"",
+					"rawType":"java.lang.String",
+					"type":"java.lang.String"
+				}
+			],
+			"path":"/web_view",
+			"type":"com.grouter.demo.webview.activity.WebViewActivity"
+		}
+	],
+	"componentModels":[],
+	"delegateModels":[],
+	"interceptorModels":[],
+	"taskModels":[]
+}

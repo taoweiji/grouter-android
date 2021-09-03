@@ -1,0 +1,8 @@
+include ':example:app',
+        ':example:travel',
+        ':example:webview',
+        ':example:waimai',
+        ':example:base'
+
+include ':example:app-shell:shell-webview',
+        ':example:app-shell:shell-base'

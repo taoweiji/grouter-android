@@ -1,0 +1,67 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'grouter'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 30
+
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+    lintOptions {
+        abortOnError false
+    }
+
+
+    sourceSets { main { java.srcDirs = ['src/main/java', 'src/main/router'] } }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    implementation 'com.alibaba:fastjson:1.1.45.android'
+
+    api project(':grouter')
+    api project(':grouter-annotation')
+
+    kapt project(':grouter-compiler')
+}
+//def task1 = tasks.create("task1").doLast {
+//    println("task1")
+//}
+//def task2 = tasks.create("task2").doFirst {
+//    println("task2")
+//}
+//
+//def task3 = tasks.create("task3").doFirst {
+//    println("task3")
+//}
+//
+//task1.dependsOn task3
+//task2.dependsOn task3
