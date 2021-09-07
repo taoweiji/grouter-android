@@ -26,6 +26,12 @@
 15. 内置5组页面Activity过场动画，并支持5.0的Activity过场动画。
 
 > GRouter已经在拥有434个Activity、28个Module的千万用户级别APP稳定使用。GRouter 会一直致力于组件化解决方案，如果你有更好的建议，可以提Issues或私聊联系我。
+
+
+### 示例下载
+[示例APP下载](https://github.com/taoweiji/grouter-android/releases/download/1.2.2/app-release.apk)
+![grouter](https://user-images.githubusercontent.com/3044176/132285526-dbf7f8bc-a2f5-4454-a4f5-dd0202f8dabb.png)
+
 ### 文档
 
 [查看文档](https://github.com/taoweiji/grouter-android/wiki)
